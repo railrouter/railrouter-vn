@@ -1,0 +1,49 @@
+{
+  "name": "railrouter-sg",
+  "version": "3.0.0",
+  "description": "Explore MRT and LRT rail routes in Singapore",
+  "keywords": [
+    "singapore",
+    "mrt",
+    "lrt",
+    "train",
+    "metro",
+    "subway",
+    "map",
+    "transport"
+  ],
+  "author": "Lim Chee Aun <cheeaun@gmail.com> (http://cheeaun.com/)",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel serve ./src/index.html --no-hmr",
+    "start-https": "parcel serve ./src/index.html --no-hmr --https",
+    "build": "parcel build ./src/index.html --no-cache",
+    "postbuild": "cpy public/* dist"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-language": "~1.0.0",
+    "fuse.js": "~6.6.2",
+    "mapbox-gl": "~2.10.0",
+    "regenerator-runtime": "~0.13.10",
+    "workbox-cacheable-response": "~6.5.4",
+    "workbox-expiration": "~6.5.4",
+    "workbox-google-analytics": "~6.5.4",
+    "workbox-routing": "~6.5.4",
+    "workbox-strategies": "~6.5.4"
+  },
+  "devDependencies": {
+    "@parcel/packager-raw-url": "~2.8.0",
+    "@parcel/transformer-webmanifest": "~2.8.0",
+    "cpy-cli": "~4.2.0",
+    "parcel": "~2.8.0"
+  },
+  "browserslist": [
+    ">0.25%",
+    "not dead",
+    "not ie 11",
+    "not chrome < 51",
+    "not op_mini all",
+    "not Android > 1",
+    "not safari < 10"
+  ]
+}
