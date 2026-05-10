@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/railrouter/',
   root: './',
   publicDir: 'public',
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     emptyOutDir: true,
   },
   server: {
