@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-  base: '/railrouter-vn/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/railrouter-vn/' : '/',
   root: './',
   publicDir: 'public',
   build: {
@@ -14,4 +14,4 @@ export default defineConfig({
   preview: {
     port: 4567,
   },
-});
+}));
