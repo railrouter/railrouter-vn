@@ -21,31 +21,34 @@
 <body>
 <div id="station" class="sheet"></div>
 <div id="map"></div>
+<button id="lang-toggle" class="map-control-btn" title="Language / Ngôn ngữ" style="position: fixed; top: 10px; right: 10px; z-index: 10; background: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer; box-shadow: 0 0 0 2px rgba(0,0,0,.1); font-weight: 600; font-size: 14px;">
+  <span id="lang-text">EN</span>
+</button>
 <div id="home" class="sheet">
   <button type="button" class="sheet-close"></button>
-  <h1>RailRouter VN</h1>
-  <p>
+  <h1 data-i18n="homeTitle">RailRouter VN</h1>
+  <p data-i18n-html="homeDescription">
     <strong>Khám phá</strong> tuyến <abbr title="Metro">Metro</abbr> tại TP. Hồ Chí Minh.
     <strong>Phóng to</strong> để xem vị trí các ga và lối ra/vào.
   </p>
   <p>
-    <span class="ib">Dữ liệu: © <a href="https://maur.hochiminhcity.gov.vn" target="_blank">MAUR</a></span>
+    <span class="ib"><span data-i18n="homeData">Dữ liệu</span>: © <a href="https://maur.hochiminhcity.gov.vn" target="_blank">MAUR</a></span>
     <span class="ib">© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a></span>
   </p>
   <p>
-    Tham khảo:
+    <span data-i18n="homeReference">Tham khảo</span>:
     <a href="https://railrouter.sg/" target="_blank" class="ib">🚇 RailRouter SG</a>
   </p>
   <p>
-    Liên hệ: <a href="mailto:contact@ngthuc.com">contact@ngthuc.com</a>
+    <span data-i18n="homeContact">Liên hệ</span>: <a href="mailto:contact@ngthuc.com">contact@ngthuc.com</a>
   </p>
-  <button type="button" class="btn" id="btn-close-home">Khám phá ngay!</button>
+  <button type="button" class="btn" id="btn-close-home" data-i18n="homeButton">Khám phá ngay!</button>
 </div>
 <details id="legend">
-  <summary>Chú giải</summary>
+  <summary data-i18n="legendTitle">Chú giải</summary>
   <div>
     <div style="width:40px;height:4px;background:#0061A8;border-radius:2px"></div>
-    Tuyến 1 (vận hành)
+    <span data-i18n="legendLine1">Tuyến 1 (vận hành)</span>
   </div>
   <div>
     <div style="width:40px;height:4px;background:#A05FA0;border-radius:2px"></div>
@@ -86,7 +89,7 @@
 <div id="search" hidden>
   <div id="search-field-container">
     <input id="search-field" type="search" autocomplete="off" spellcheck="false" placeholder="&ldquo;Bến Thành&rdquo; hoặc &ldquo;L1-01&rdquo;" />
-    <button type="button" id="search-cancel">Huỷ</button>
+    <button type="button" id="search-cancel" data-i18n="searchCancel">Hủy</button>
   </div>
   <ul id="search-results"></ul>
 </div>

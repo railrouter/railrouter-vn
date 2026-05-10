@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import Fuse from 'fuse.js';
 import railData from './vn-rail.geo.json';
 import stationsData from './stations.json';
+import { getCurrentLanguage, setLanguage, t } from './i18n.js';
 
 const $ = (id) => document.getElementById(id);
 let stationsDataGlobal = null;
@@ -14,6 +15,8 @@ const $search = $('search');
 const $searchField = $('search-field');
 const $searchCancel = $('search-cancel');
 const $searchResults = $('search-results');
+const $langToggle = $('lang-toggle');
+const $langText = $('lang-text');
 
 // Close home panel
 $btnCloseHome.onclick = (e) => {
@@ -23,6 +26,98 @@ $btnCloseHome.onclick = (e) => {
 
 // Force hide home panel on load
 $home.classList.remove('open');
+
+// Language switching
+function updateTranslations() {
+  const lang = getCurrentLanguage();
+  
+  // Update language toggle button
+  $langText.textContent = lang === 'vi' ? 'EN' : 'VI';
+  
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = t(key);
+  });
+  
+  // Update all elements with data-i18n-html attribute
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    el.innerHTML = t(key);
+  });
+  
+  // Update search placeholder
+  if ($searchField) {
+    $searchField.placeholder = t('searchPlaceholder');
+  }
+  
+  // Update page title and meta
+  document.title = t('metaTitle');
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.content = t('metaDescription');
+  }
+  
+  // Update map labels
+  updateMapLabels();
+}
+
+// Update map station labels based on language
+function updateMapLabels() {
+  // Use try-catch to safely check if map exists (it's initialized later)
+  try {
+    if (!window.map || !window.map.getLayer('stations-labels')) {
+      return; // Map not ready yet, skip silently
+    }
+    
+    const lang = getCurrentLanguage();
+    const textField = lang === 'en' 
+      ? ['coalesce', ['get', 'nameEn'], ['get', 'name']]
+      : ['get', 'name'];
+    
+    console.log('Updating map labels to:', lang);
+    window.map.setLayoutProperty('stations-labels', 'text-field', textField);
+    console.log('Map labels updated successfully');
+  } catch (e) {
+    // Map not initialized yet, skip silently
+    return;
+  }
+}
+
+// Language toggle button click
+$langToggle.onclick = () => {
+  const currentLang = getCurrentLanguage();
+  const newLang = currentLang === 'vi' ? 'en' : 'vi';
+  setLanguage(newLang);
+  updateTranslations();
+  
+  // Re-initialize Fuse.js with new language
+  if (stationsDataGlobal) {
+    const searchKeys = newLang === 'en' 
+      ? ['properties.nameEn', 'properties.name']
+      : ['properties.name', 'properties.nameEn'];
+    
+    fuse = new Fuse(stationsDataGlobal.features, {
+      keys: searchKeys,
+      threshold: 0.3,
+      includeScore: true
+    });
+  }
+  
+  // Refresh search results if search panel is open
+  if ($search && !$search.hidden) {
+    const query = $searchField.value.trim();
+    if (!query) {
+      showAllStations();
+    } else {
+      // Trigger search again with new language
+      $searchField.oninput({ target: $searchField });
+    }
+  }
+};
+
+// Initialize translations on load
+updateTranslations();
 
 // Add event delegation for home panel close button
 $home.addEventListener('click', (e) => {
@@ -56,6 +151,9 @@ const map = new mapboxgl.Map({
   renderWorldCopies: false,
   boxZoom: false,
 });
+
+// Make map accessible globally for language switching
+window.map = map;
 
 // Add navigation controls
 map.addControl(
@@ -220,13 +318,18 @@ map.on('load', async () => {
       }
     });
 
-    // Add station labels
+    // Add station labels with dynamic language support
+    const currentLang = getCurrentLanguage();
+    const initialTextField = currentLang === 'en' 
+      ? ['coalesce', ['get', 'nameEn'], ['get', 'name']]
+      : ['get', 'name'];
+    
     map.addLayer({
       id: 'stations-labels',
       type: 'symbol',
       source: 'stations',
       layout: {
-        'text-field': ['get', 'name'],
+        'text-field': initialTextField,
         'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
         'text-size': 12,
         'text-offset': [0, 1.5],
@@ -372,8 +475,10 @@ map.on('load', async () => {
 function showStationInfo(station, stationFeature) {
   const exits = stationFeature.properties.exits || [];
   const lines = stationFeature.properties.lines || [];
-  const stationName = stationFeature.properties.name || station.name || 'Ga metro';
-  const stationCode = stationFeature.properties.code || station.code || '';
+  const lang = getCurrentLanguage();
+  const stationName = lang === 'en' 
+    ? (stationFeature.properties.nameEn || stationFeature.properties.name)
+    : (stationFeature.properties.name || stationFeature.properties.nameEn);
   
   let html = `
     <button type="button" class="sheet-close"></button>
@@ -389,14 +494,22 @@ function showStationInfo(station, stationFeature) {
           'line-4': '#1B9E77',
           'bt-cangio': '#808080'
         };
-        const lineNames = {
+        const lineNamesVi = {
           'line-1': 'Tuyến 1 - Bến Thành - Suối Tiên',
           'line-2': 'Tuyến 2',
           'line-3a': 'Tuyến 3A',
           'line-4': 'Tuyến 4',
           'bt-cangio': 'Bến Thành - Cần Giờ'
         };
-        return `<span class="line-badge" style="background-color: ${lineColors[lineId]} !important; padding: 6px 10px; border-radius: 4px; color: white !important; font-size: 12px; font-weight: 600; display: inline-block; margin: 2px;">${lineNames[lineId]}</span>`;
+        const lineNamesEn = {
+          'line-1': 'Line 1 - Ben Thanh - Suoi Tien',
+          'line-2': 'Line 2',
+          'line-3a': 'Line 3A',
+          'line-4': 'Line 4',
+          'bt-cangio': 'Ben Thanh - Can Gio'
+        };
+        const lineName = lang === 'en' ? lineNamesEn[lineId] : lineNamesVi[lineId];
+        return `<span class="line-badge" style="background-color: ${lineColors[lineId]} !important; padding: 6px 10px; border-radius: 4px; color: white !important; font-size: 12px; font-weight: 600; display: inline-block; margin: 2px;">${lineName}</span>`;
       }).join('')}
     </div>
   `;
@@ -404,11 +517,12 @@ function showStationInfo(station, stationFeature) {
   if (exits.length > 0) {
     html += `
       <div class="station-exits">
-        <h3>Lối ra</h3>
+        <h3>${t('stationExits')}</h3>
         <ul>
           ${exits.map(exit => {
             const [lng, lat] = exit.location;
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+            const closedText = exit.status === 'closed' ? `<span class="badge-closed">${t('stationClosed')}</span>` : '';
             return `
               <li class="exit-item ${exit.status === 'closed' ? 'closed' : ''}" 
                   data-exit-number="${exit.number}"
@@ -419,11 +533,11 @@ function showStationInfo(station, stationFeature) {
                   data-exit-lat="${lat}"
                   data-station-name="${stationName}"
                   style="cursor: pointer;">
-                <strong>Lối ra ${exit.number}</strong> - ${exit.name}
-                ${exit.status === 'closed' ? '<span class="badge-closed">Đóng</span>' : ''}
+                <strong>${t('stationExit')} ${exit.number}</strong> - ${exit.name}
+                ${closedText}
                 <div class="exit-desc">${exit.description}</div>
                 <a href="${googleMapsUrl}" target="_blank" class="btn-maps-small" style="display: inline-block; margin-top: 6px; padding: 6px 12px; background: #4285F4; color: white; text-decoration: none; border-radius: 3px; font-size: 12px; font-weight: 500;" onclick="event.stopPropagation();">
-                  📍 Mở Google Maps
+                  ${t('btnGoogleMaps')}
                 </a>
               </li>
             `;
@@ -523,9 +637,11 @@ function showAllStations() {
     'bt-cangio': '#808080'
   };
   
+  const lang = getCurrentLanguage();
   $searchResults.innerHTML = stationsDataGlobal.features.map(feature => {
     const station = feature.properties;
     const codes = station.codes || [];
+    const displayName = lang === 'en' ? (station.nameEn || station.name) : station.name;
     
     // Generate code badges for all codes
     const codeBadges = codes.map(codeObj => {
@@ -536,7 +652,7 @@ function showAllStations() {
     return `
       <li onclick="selectStation('${station.id}')">
         <div class="station-info">
-          <div class="station-name">${station.name}</div>
+          <div class="station-name">${displayName}</div>
         </div>
         <div style="display: flex; gap: 4px;">
           ${codeBadges}
@@ -567,7 +683,7 @@ $searchField.oninput = (e) => {
   const results = fuse.search(query);
   
   if (results.length === 0) {
-    $searchResults.innerHTML = '<li style="padding: 20px; text-align: center; color: #999;">Không tìm thấy ga nào</li>';
+    $searchResults.innerHTML = `<li style="padding: 20px; text-align: center; color: #999;">${t('searchNoResults')}</li>`;
     return;
   }
   
@@ -579,9 +695,11 @@ $searchField.oninput = (e) => {
     'bt-cangio': '#808080'
   };
   
+  const lang = getCurrentLanguage();
   $searchResults.innerHTML = results.slice(0, 10).map(result => {
     const station = result.item.properties;
     const codes = station.codes || [];
+    const displayName = lang === 'en' ? (station.nameEn || station.name) : station.name;
     
     // Generate code badges for all codes
     const codeBadges = codes.map(codeObj => {
@@ -592,7 +710,7 @@ $searchField.oninput = (e) => {
     return `
       <li onclick="selectStation('${station.id}')">
         <div class="station-info">
-          <div class="station-name">${station.name}</div>
+          <div class="station-name">${displayName}</div>
         </div>
         <div style="display: flex; gap: 4px;">
           ${codeBadges}

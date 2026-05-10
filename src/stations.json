@@ -180,7 +180,7 @@
           {"line": "line-1", "code": "L1-04"}
         ],
         "name": "Văn Thánh",
-        "nameEn": "Van Thanh",
+        "nameEn": "Van Thanh Park",
         "lines": ["line-1"],
         "status": "operational",
         "exits": [
@@ -535,7 +535,7 @@
           {"line": "line-1", "code": "L1-12"}
         ],
         "name": "Khu Công nghệ cao",
-        "nameEn": "High-Tech Park",
+        "nameEn": "High Tech Park",
         "lines": ["line-1"],
         "status": "operational",
         "exits": [
@@ -636,7 +636,7 @@
           {"line": "line-1", "code": "L1-14"}
         ],
         "name": "Bến xe Suối Tiên",
-        "nameEn": "Suoi Tien Bus Station",
+        "nameEn": "Suoi Tien Terminal",
         "lines": ["line-1"],
         "status": "operational",
         "exits": [
