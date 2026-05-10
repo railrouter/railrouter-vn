@@ -1,0 +1,10 @@
+{
+  "name": "RailRouter VN - Metro TPHCM",
+  "short_name": "RailRouter VN",
+  "description": "Khám phá tuyến Metro tại TP. Hồ Chí Minh",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00A868",
+  "icons": []
+}

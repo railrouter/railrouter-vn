@@ -1,655 +1,96 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Metro Router TPHCM</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-#map{position:absolute;inset:0;z-index:0}
-
-/* ── PANEL ── */
-#panel{
-  position:absolute;top:0;left:0;bottom:0;width:300px;
-  background:#fff;z-index:800;display:flex;flex-direction:column;
-  box-shadow:2px 0 16px rgba(0,0,0,.15);
-  transition:transform .28s cubic-bezier(.4,0,.2,1);
-}
-#panel.hidden{transform:translateX(-100%)}
-@media(max-width:600px){
-  #panel{width:100%;box-shadow:none}
-}
-
-/* Intro */
-#intro{padding:22px 18px 0;flex:1;overflow-y:auto}
-#intro h1{font-size:21px;font-weight:700;color:#00A868;margin-bottom:8px}
-#intro p{font-size:13px;color:#444;line-height:1.65;margin-bottom:10px}
-#intro .meta{font-size:11px;color:#999;line-height:2}
-#intro .meta a{color:#00A868;text-decoration:none}
-#intro .sisters{margin-top:10px;font-size:12px;color:#aaa}
-#intro .sisters a{color:#00A868;text-decoration:none}
-#explore-btn{
-  margin:14px 18px 18px;padding:12px;
-  background:#00A868;color:#fff;border:none;border-radius:10px;
-  font-size:14px;font-weight:600;cursor:pointer;width:calc(100% - 36px);
-}
-#explore-btn:hover{background:#008f59}
-
-/* Station panel */
-#sp{display:none;flex-direction:column;height:100%;overflow:hidden}
-#sp.active{display:flex}
-
-#sp-header{padding:14px 16px 12px;border-bottom:1px solid #f0f0f0;flex-shrink:0;position:relative}
-#sp-close{
-  position:absolute;top:12px;right:12px;
-  width:30px;height:30px;border-radius:50%;
-  background:#f0f0f0;border:none;font-size:16px;color:#555;
-  cursor:pointer;line-height:30px;text-align:center;
-}
-#sp-close:hover{background:#e0e0e0}
-#sp-lines{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
-.lb{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;color:#fff}
-.lb-1{background:#0061A8}.lb-2{background:#A05FA0}.lb-3a{background:#E8692A}.lb-4{background:#1B9E77}
-#sp-name{font-size:19px;font-weight:700;color:#1a1a1a;padding-right:36px;line-height:1.2}
-#sp-sub{font-size:12px;color:#999;margin-top:2px}
-#sp-typebadge{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:12px;margin-top:7px}
-.tb-ug{background:#E6F4EE;color:#005F3B}
-.tb-el{background:#EBF4FF;color:#0061A8}
-
-/* Exits */
-#sp-exits-hdr{padding:10px 16px 8px;border-bottom:1px solid #f5f5f5;flex-shrink:0}
-.slbl{font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
-#sp-exit-btns{display:flex;gap:6px;flex-wrap:wrap}
-.eb{
-  width:38px;height:38px;border-radius:7px;font-size:13px;font-weight:700;
-  border:2px solid #E8A000;background:#fff;color:#8B6000;cursor:pointer;transition:all .15s;
-}
-.eb:hover,.eb.act{background:#E8A000;color:#fff}
-.eb.cls{border-color:#ddd;color:#ccc}
-.eb.cls:hover,.eb.cls.act{background:#ddd;color:#fff}
-
-/* Station image */
-#sp-imgwrap{flex-shrink:0;height:150px;overflow:hidden;background:#f5f5f5;position:relative;display:none}
-#sp-img{width:100%;height:100%;object-fit:cover}
-#sp-imgcredit{position:absolute;bottom:0;right:0;font-size:9px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.35);padding:2px 5px}
-
-/* Body */
-#sp-body{flex:1;overflow-y:auto;padding:12px 16px 20px}
-#sp-exit-det{background:#FFFBF0;border:1px solid #F5D97A;border-radius:8px;padding:10px 12px;margin-bottom:12px;display:none}
-#sp-exit-det.show{display:block}
-#sp-exit-n{font-size:10px;font-weight:700;color:#8B6000;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
-#sp-exit-d{font-size:13px;color:#444;line-height:1.55}
-#sp-desc{font-size:13px;color:#555;line-height:1.65;margin-bottom:12px}
-#sp-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.sc{background:#f8f8f8;border-radius:8px;padding:9px 11px}
-.sl{font-size:10px;color:#bbb;margin-bottom:2px}
-.sv{font-size:13px;font-weight:600;color:#1a1a1a}
-.lrow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f5f5f5;font-size:12px;color:#444}
-.lrow:last-child{border-bottom:none}
-.ldot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-
-/* ── TOGGLE BUTTON ── */
-#ptoggle{
-  position:absolute;top:14px;left:14px;z-index:900;
-  width:44px;height:44px;border-radius:12px;
-  background:#00A868;border:none;
-  box-shadow:0 2px 10px rgba(0,0,0,.25);
-  cursor:pointer;display:none;align-items:center;justify-content:center;
-}
-#ptoggle.vis{display:flex}
-#ptoggle:hover{background:#008f59}
-
-/* ── SEARCH ── */
-#sbtn{
-  position:absolute;bottom:80px;right:14px;z-index:900;
-  width:44px;height:44px;border-radius:50%;
-  background:#fff;border:none;
-  box-shadow:0 2px 10px rgba(0,0,0,.2);
-  font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-}
-#soverlay{
-  position:absolute;inset:0;z-index:1000;
-  background:rgba(180,220,255,.5);backdrop-filter:blur(14px);
-  display:none;flex-direction:column;align-items:center;padding-top:50px;
-}
-#soverlay.open{display:flex}
-#sbxwrap{display:flex;gap:8px;width:min(420px,92vw)}
-#sinput{
-  flex:1;padding:11px 14px;font-size:15px;
-  border:2px solid #0061A8;border-radius:10px;
-  background:#fff;outline:none;
-}
-#scancel{padding:11px 14px;background:none;border:none;font-size:14px;color:#333;cursor:pointer;font-weight:500}
-#sresults{
-  margin-top:8px;background:#fff;border-radius:12px;
-  width:min(420px,92vw);overflow:hidden;
-  box-shadow:0 4px 24px rgba(0,0,0,.14);
-}
-.sitem{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:13px 16px;border-bottom:1px solid #f5f5f5;cursor:pointer;
-}
-.sitem:last-child{border-bottom:none}
-.sitem:hover{background:#f8f8f8}
-.siname{font-size:14px;font-weight:500;color:#1a1a1a}
-.sibadges{display:flex;gap:4px}
-
-/* ── LEGEND ── */
-#legbtn{
-  position:absolute;bottom:28px;left:14px;z-index:900;
-  font-size:12px;font-weight:600;color:#444;
-  background:#fff;border:none;padding:7px 13px;
-  border-radius:20px;cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
-#legpanel{
-  position:absolute;bottom:68px;left:14px;z-index:900;
-  background:#fff;border-radius:10px;padding:12px 14px;
-  box-shadow:0 4px 16px rgba(0,0,0,.15);display:none;min-width:210px;
-}
-#legpanel.open{display:block}
-.legr{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:12px;color:#444}
-.legl{width:22px;height:4px;border-radius:2px}
-.legd{width:10px;height:10px;border-radius:50%}
-.legs{width:13px;height:13px;border-radius:3px;background:#E8A000}
-
-/* Exit marker on map */
-.exi{
-  width:22px;height:22px;border-radius:4px;
-  background:#E8A000;color:#fff;font-size:10px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3);cursor:pointer;
-}
-.exi.cls{background:#bbb}
-
-.leaflet-control-zoom{border:none!important;box-shadow:0 2px 8px rgba(0,0,0,.2)!important}
-.leaflet-control-zoom a{width:38px!important;height:38px!important;line-height:38px!important;font-size:18px!important;color:#444!important;border:none!important}
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RailRouter VN – Khám phá Metro TPHCM – Bản đồ tàu điện TP.HCM</title>
+<link rel="stylesheet" type="text/css" href="/src/index.css" />
+<meta name="description" content="Khám phá tuyến Metro tại TP. Hồ Chí Minh" />
+<link rel="preload" as="fetch" href="/src/vn-rail.geo.json" crossorigin="anonymous" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="RailRouter VN" />
+<meta name="twitter:url" property="og:url" content="https://railrouter-vn.netlify.app" />
+<meta name="twitter:title" property="og:title" content="RailRouter VN" />
+<meta name="twitter:description" property="og:description" content="Khám phá tuyến Metro tại TP. Hồ Chí Minh" />
+<link rel="manifest" href="/src/index.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="RailRouter VN" />
+<meta name="theme-color" content="#00A868" />
 </head>
 <body>
+<div id="station" class="sheet"></div>
 <div id="map"></div>
-
-<!-- Toggle button (shown when panel hidden) -->
-<button id="ptoggle" title="Mở menu">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <rect x="2" y="7" width="20" height="10" rx="3" fill="white" opacity=".95"/>
-    <circle cx="6.5" cy="18" r="2" fill="white"/>
-    <circle cx="17.5" cy="18" r="2" fill="white"/>
-    <rect x="8" y="3" width="8" height="3.5" rx="1.2" fill="white" opacity=".65"/>
+<div id="home" class="sheet">
+  <button type="button" class="sheet-close"></button>
+  <h1>RailRouter VN</h1>
+  <p>
+    <strong>Khám phá</strong> tuyến <abbr title="Metro">Metro</abbr> tại TP. Hồ Chí Minh.
+    <strong>Phóng to</strong> để xem vị trí các ga và lối ra/vào.
+  </p>
+  <p>
+    <span class="ib">Dữ liệu: © <a href="https://maur.hochiminhcity.gov.vn" target="_blank">MAUR</a></span>
+    <span class="ib">© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a></span>
+  </p>
+  <p>
+    Tham khảo:
+    <a href="https://railrouter.sg/" target="_blank" class="ib">🚇 RailRouter SG</a>
+  </p>
+  <p>
+    Liên hệ: <a href="mailto:contact@ngthuc.com">contact@ngthuc.com</a>
+  </p>
+  <button type="button" class="btn" id="btn-close-home">Khám phá ngay!</button>
+</div>
+<details id="legend">
+  <summary>Chú giải</summary>
+  <div>
+    <div style="width:40px;height:4px;background:#0061A8;border-radius:2px"></div>
+    Tuyến 1 (vận hành)
+  </div>
+  <div>
+    <div style="width:40px;height:4px;background:#A05FA0;border-radius:2px"></div>
+    Tuyến 2 (quy hoạch)
+  </div>
+  <div>
+    <div style="width:40px;height:4px;background:#808080;border-radius:2px;opacity:0.5"></div>
+    MRT/LRT (quy hoạch)
+  </div>
+  <div>
+    <div style="width:40px;height:8px;background:#8B0000;border-radius:2px;opacity:0.5"></div>
+    HSR (quy hoạch)
+  </div>
+  <div>
+    <div style="width:40px;height:4px;background:#000000;border-radius:2px"></div>
+    Đường sắt thông thường
+  </div>
+  <div>
+    <div style="width:14px;height:14px;background:#E8A000;border-radius:3px"></div>
+    Lối ra/vào ga
+  </div>
+</details>
+<button id="search-btn" class="map-control-btn" title="Tìm kiếm ga">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.35-4.35"></path>
   </svg>
 </button>
-
-<!-- LEFT PANEL -->
-<div id="panel">
-  <!-- INTRO -->
-  <div id="intro">
-    <h1>Metro Router TPHCM</h1>
-    <p>Khám phá tuyến <strong>Metro</strong> tại TP. Hồ Chí Minh.<br>
-    <strong>Phóng to</strong> để xem vị trí các lối ra/vào của từng ga.<br>
-    <strong>Click vào ga</strong> để xem thông tin chi tiết.</p>
-    <div class="meta">
-      Dữ liệu: <a href="https://maur.hochiminhcity.gov.vn" target="_blank">MAUR</a> · <a href="https://hurc.vn" target="_blank">HURC1</a><br>
-      Bản đồ: © <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a><br>
-      Tuyến vận hành: <strong>Tuyến 1</strong> (22/12/2024)
-    </div>
-    <div class="sisters">Tham khảo: <a href="https://railrouter.sg" target="_blank">🚇 RailRouter SG</a></div>
-  </div>
-  <button id="explore-btn">Khám phá ngay!</button>
-
-  <!-- STATION VIEW -->
-  <div id="sp">
-    <div id="sp-header">
-      <button id="sp-close">✕</button>
-      <div id="sp-lines"></div>
-      <div id="sp-name"></div>
-      <div id="sp-sub"></div>
-      <span id="sp-typebadge"></span>
-    </div>
-    <div id="sp-exits-hdr">
-      <div class="slbl">Lối ra</div>
-      <div id="sp-exit-btns"></div>
-    </div>
-    <div id="sp-imgwrap"><img id="sp-img" src="" alt=""/><div id="sp-imgcredit"></div></div>
-    <div id="sp-body">
-      <div id="sp-exit-det">
-        <div id="sp-exit-n"></div>
-        <div id="sp-exit-d"></div>
-      </div>
-      <div class="slbl" style="margin-bottom:7px">Thông tin ga</div>
-      <div id="sp-desc"></div>
-      <div id="sp-stats"></div>
-      <div class="slbl" style="margin-top:4px;margin-bottom:7px">Tuyến phục vụ</div>
-      <div id="sp-linfo"></div>
-    </div>
-  </div>
+<div id="logo" tabindex="-1">
+  <svg viewBox="0 0 20 20" width="44" height="44">
+    <title>RailRouter VN</title>
+    <circle cx="10" cy="10" r="9.45" fill="#fff" stroke="#00A868" stroke-width="1.1" />
+    <path fill="#00A868" d="M12.944 11.375H7.09c-1.02 0-1.02-.98-1.02-1.293 0-1.042.203-2.144.51-3.09.258-.77.68-1.716 3.437-1.716 2.75 0 3.18.953 3.437 1.715.313.955.51 2.044.51 3.086 0 .32 0 1.293-1.02 1.293m-1.042 1.204c0-.272.238-.51.518-.51.285 0 .517.23.517.51 0 .286-.26.517-.545.517-.272 0-.51-.23-.51-.516m-4.29.517c-.29 0-.523-.23-.523-.516 0-.272.23-.51.51-.51.285 0 .516.23.516.51 0 .286-.23.517-.517.517m7.39-2.04c0-2.077-.79-4.936-1.537-5.685-.817-.816-2.587-.864-3.438-.864-.87 0-2.634.04-3.45.865C5.795 6.115 5 8.972 5 11.048c0 1.02 0 2.723 1.02 2.723h.73l-.86 1.73h1.715l.34-1.722h4.132l.34 1.702h1.722l-.86-1.702h.68c1.04 0 1.04-1.73 1.04-2.743l-.028.013z" />
+    <circle cx="16" cy="16" r="4" fill="#DA251D" />
+    <text x="16" y="18.5" text-anchor="middle" fill="#fff" font-size="5" font-weight="bold">VN</text>
+  </svg>
 </div>
-
-<!-- SEARCH -->
-<button id="sbtn" title="Tìm ga">🔍</button>
-<div id="soverlay">
-  <div id="sbxwrap">
-    <input id="sinput" type="text" placeholder="Tên ga, ví dụ: Bến Thành..."/>
-    <button id="scancel">Huỷ</button>
+<div id="search" hidden>
+  <div id="search-field-container">
+    <input id="search-field" type="search" autocomplete="off" spellcheck="false" placeholder="&ldquo;Bến Thành&rdquo; hoặc &ldquo;L1-01&rdquo;" />
+    <button type="button" id="search-cancel">Huỷ</button>
   </div>
-  <div id="sresults"></div>
+  <ul id="search-results"></ul>
 </div>
-
-<!-- LEGEND -->
-<button id="legbtn">▼ Chú giải</button>
-<div id="legpanel">
-  <div class="legr"><div class="legl" style="background:#0061A8"></div>Tuyến 1 (vận hành)</div>
-  <div class="legr"><div class="legd" style="background:#005F3B;border:2px solid #fff;box-shadow:0 0 0 1.5px #005F3B"></div>Ga ngầm</div>
-  <div class="legr"><div class="legd" style="background:#0061A8;border:2px solid #fff;box-shadow:0 0 0 1.5px #0061A8"></div>Ga trên cao</div>
-  <div class="legr"><div class="legs"></div>Lối ra/vào (zoom ≥ 15)</div>
-  <div class="legr"><div style="width:18px;height:10px;border-radius:2px;background:rgba(231,76,60,.18);border:1.5px solid rgba(192,57,43,.6)"></div>Mặt bằng ga ngầm</div>
-  <div class="legr"><div style="width:18px;height:10px;border-radius:2px;background:rgba(41,128,185,.12);border:1.5px solid rgba(0,97,168,.5)"></div>Mặt bằng ga trên cao</div>
-</div>
-
-<script>
-const LM={
-  1:{name:'Tuyến 1',s:'L1',c:'#0061A8',cl:'lb-1',active:true},
-  2:{name:'Tuyến 2',s:'L2',c:'#A05FA0',cl:'lb-2',active:false},
-  '3a':{name:'Tuyến 3A',s:'L3A',c:'#E8692A',cl:'lb-3a',active:false},
-  4:{name:'Tuyến 4',s:'L4',c:'#1B9E77',cl:'lb-4',active:false},
-};
-
-// GPS coordinates verified from Google Maps + OSM street-level cross-referencing
-// Line follows: Le Loi tunnel → Nguyen Huu Canh overpass → Dien Bien Phu
-// → Xa Lo Ha Noi eastbound → turns NE at Binh Thai → north to Thu Duc → NE to Suoi Tien
-const ST=[
-  {id:'L101',code:'L1-01',name:'Bến Thành',en:'Ben Thanh',type:'underground',
-   lat:10.77195,lng:106.69810,dist:0,lines:[1,2,'3a',4],
-   exits:[
-     {n:'1',lat:10.77155,lng:106.69765,desc:'Công viên 23/9 – gần bãi giữ xe TNXP, nhìn ra McDonald\'s và KFC. Lối ra chính, có thang máy (tiếp cận xe lăn).',closed:false},
-     {n:'2',lat:10.77215,lng:106.69780,desc:'Quảng trường đi bộ Lê Lợi – hướng về khách sạn New World, giữa đường Lê Lai và Trần Hưng Đạo.',closed:false},
-     {n:'3',lat:10.77270,lng:106.69850,desc:'Cửa Tây chợ Bến Thành – đường Phan Chu Trinh, cạnh cổng Tây chợ.',closed:false},
-     {n:'4',lat:10.77215,lng:106.69875,desc:'Tòa nhà One Central Saigon (đang xây dựng) – lối thoát hiểm tạm, hiện đóng cửa hành khách.',closed:true},
-     {n:'5',lat:10.77185,lng:106.69855,desc:'Tòa nhà One Central Saigon – đường Phó Đức Chính. Đang đóng, sẽ hoàn thiện khi tổ hợp ngầm hoàn thành.',closed:true},
-     {n:'6',lat:10.77230,lng:106.69870,desc:'Đường Hàm Nghi – đối diện tòa nhà Công ty Vận tải Đường sắt và gần Bệnh viện Đa khoa Sài Gòn.',closed:false},
-   ],
-   img:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Ben_Thanh_station_skylight.jpg/640px-Ben_Thanh_station_skylight.jpg',
-   imgCredit:'© Wikipedia CC BY-SA',
-   desc:'Ga ngầm lớn nhất tuyến, xây dưới Quảng trường Quách Thị Trang. Mái vòm hoa sen Ø21,6m đưa ánh sáng tự nhiên xuống tầng B1. Tương lai là đầu mối 4 tuyến metro.',
-   stats:{dist:'0 km',type:'Ngầm (B1–B4)',exits:6,opened:'22/12/2024'}},
-
-  {id:'L102',code:'L1-02',name:'Nhà Hát TP',en:'Opera House',type:'underground',
-   lat:10.77698,lng:106.70319,dist:0.6,lines:[1],
-   exits:[
-     {n:'1',lat:10.77730,lng:106.70275,desc:'Đường Nguyễn Siêu – gần Nhà hát Thành phố, góc Đồng Khởi.',closed:false},
-     {n:'2',lat:10.77750,lng:106.70355,desc:'Công trường Lam Sơn – gần Union Square và Rex Hotel.',closed:false},
-     {n:'3',lat:10.77620,lng:106.70365,desc:'Quảng trường Mê Linh – ven sông Sài Gòn, đường Tôn Đức Thắng.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Ga ngầm kề Nhà hát Thành phố (1898, kiến trúc Pháp) và phố đi bộ Nguyễn Huệ – trái tim tài chính – thương mại TP.HCM.',
-   stats:{dist:'0,6 km',type:'Ngầm',exits:3,opened:'22/12/2024'}},
-
-  {id:'L103',code:'L1-03',name:'Ba Son',en:'Ba Son',type:'underground',
-   lat:10.78918,lng:106.71423,dist:2.3,lines:[1],
-   exits:[
-     {n:'1',lat:10.78960,lng:106.71385,desc:'Đại lộ Tôn Đức Thắng – cạnh cầu Ba Son và Marina Central Tower.',closed:false},
-     {n:'2',lat:10.78875,lng:106.71465,desc:'Khu căn hộ Marina Central Tower – phía sông Sài Gòn.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Ga ngầm cuối cùng trước khi tuyến lên cao. Trên nền xưởng đóng tàu Ba Son lịch sử (thế kỷ 18), nay là khu đô thị mới Marina Central.',
-   stats:{dist:'2,3 km',type:'Ngầm',exits:2,opened:'22/12/2024'}},
-
-  {id:'L104',code:'L1-04',name:'Văn Thánh',en:'Van Thanh Park',type:'elevated',
-   lat:10.80084,lng:106.71967,dist:3.5,lines:[1],
-   exits:[
-     {n:'A',lat:10.80045,lng:106.71920,desc:'Phía Tây – gần Công viên Văn Thánh, đường Điện Biên Phủ.',closed:false},
-     {n:'B',lat:10.80120,lng:106.72010,desc:'Phía Đông – khu nhà hàng ven sông Sài Gòn.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Ga trên cao đầu tiên. Nằm trên đường Điện Biên Phủ, cạnh Công viên Văn Thánh.',
-   stats:{dist:'3,5 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L105',code:'L1-05',name:'Tân Cảng',en:'Tan Cang',type:'elevated',
-   lat:10.80532,lng:106.72905,dist:4.4,lines:[1],
-   exits:[
-     {n:'A',lat:10.80490,lng:106.72855,desc:'Phía Tây Nam – đường Điện Biên Phủ, gần ngã tư Ung Văn Khiêm.',closed:false},
-     {n:'B',lat:10.80575,lng:106.72955,desc:'Phía Đông Bắc – hướng khu Tân Cảng, đường Ung Văn Khiêm.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Trên đường Điện Biên Phủ, khu Bình Thạnh. Tương lai kết nối Tuyến 5.',
-   stats:{dist:'4,4 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L106',code:'L1-06',name:'Thảo Điền',en:'Thao Dien',type:'elevated',
-   lat:10.80326,lng:106.73882,dist:5.5,lines:[1],
-   exits:[
-     {n:'A',lat:10.80285,lng:106.73830,desc:'Xa lộ Hà Nội phía Tây – khu Thảo Điền, gần đường Quốc Hương.',closed:false},
-     {n:'B',lat:10.80365,lng:106.73935,desc:'Xa lộ Hà Nội phía Đông – vào khu Thảo Điền (expat quarter).',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Khu dân cư Thảo Điền – nổi tiếng với cộng đồng người nước ngoài, nhà hàng quốc tế và biệt thự cao cấp.',
-   stats:{dist:'5,5 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L107',code:'L1-07',name:'An Phú',en:'An Phu',type:'elevated',
-   lat:10.79937,lng:106.74926,dist:6.5,lines:[1],
-   exits:[
-     {n:'A',lat:10.79895,lng:106.74875,desc:'Đường Mai Chí Thọ phía Tây – khu An Phú–An Khánh.',closed:false},
-     {n:'B',lat:10.79980,lng:106.74975,desc:'Đường Mai Chí Thọ phía Đông – hướng cầu Sài Gòn.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Cửa ngõ khu An Phú, một trong những khu đô thị cao cấp nhất TP.HCM. Gần cầu Sài Gòn.',
-   stats:{dist:'6,5 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L108',code:'L1-08',name:'Rạch Chiếc',en:'Rach Chiec',type:'elevated',
-   lat:10.80328,lng:106.76094,dist:8.2,lines:[1],
-   exits:[
-     {n:'A',lat:10.80285,lng:106.76040,desc:'Phía Tây cầu Rạch Chiếc – Xa lộ Hà Nội hướng trung tâm.',closed:false},
-     {n:'B',lat:10.80370,lng:106.76150,desc:'Phía Đông – hướng Khu thể thao Rạch Chiếc.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Gần Khu Liên hợp Thể dục Thể thao Rạch Chiếc (quy hoạch thành trung tâm thể thao quốc gia).',
-   stats:{dist:'8,2 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L109',code:'L1-09',name:'Phước Long',en:'Phuoc Long',type:'elevated',
-   lat:10.80945,lng:106.77200,dist:9.7,lines:[1],
-   exits:[
-     {n:'A',lat:10.80900,lng:106.77145,desc:'Xa lộ Hà Nội hướng trung tâm – khu dân cư Phước Long.',closed:false},
-     {n:'B',lat:10.80990,lng:106.77255,desc:'Xa lộ Hà Nội hướng ngoại thành – khu Bình Trưng Tây.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Phục vụ khu dân cư Phước Long và Bình Trưng, khu vực đang phát triển nhanh của TP. Thủ Đức.',
-   stats:{dist:'9,7 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L110',code:'L1-10',name:'Bình Thái',en:'Binh Thai',type:'elevated',
-   lat:10.82005,lng:106.77960,dist:11.0,lines:[1],
-   exits:[
-     {n:'A',lat:10.81960,lng:106.77905,desc:'Xa lộ Hà Nội phía Nam – khu Bình Thái, đường Hoàng Diệu 2.',closed:false},
-     {n:'B',lat:10.82050,lng:106.78015,desc:'Xa lộ Hà Nội phía Bắc – hướng đường vành đai.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Kết nối tương lai với Tuyến 6 (vành đai). Gần các trường học và khu công nghiệp phường Trường Thọ.',
-   stats:{dist:'11,0 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  // Ga Thủ Đức: nằm trên Xa lộ Hà Nội, đoạn giữa Bình Thái và Khu CNC
-  // Tọa độ xác minh: 10.8330°N 106.7738°E (trên viaduct Xa lộ Hà Nội)
-  {id:'L111',code:'L1-11',name:'Thủ Đức',en:'Thu Duc',type:'elevated',
-   lat:10.83300,lng:106.77380,dist:12.8,lines:[1],
-   exits:[
-     {n:'A',lat:10.83260,lng:106.77330,desc:'Xa lộ Hà Nội – phía Nam, gần ngã tư Linh Xuân.',closed:false},
-     {n:'B',lat:10.83340,lng:106.77430,desc:'Xa lộ Hà Nội – phía Bắc, khu Linh Tây, ĐH Nông Lâm.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Trung tâm TP. Thủ Đức – đơn vị hành chính đô thị mới (2021) từ Quận 2, Quận 9 và Thủ Đức cũ. Dân số ~1,1 triệu người.',
-   stats:{dist:'12,8 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L112',code:'L1-12',name:'Khu CNC',en:'Hi-Tech Park',type:'elevated',
-   lat:10.85320,lng:106.79870,dist:15.2,lines:[1],
-   exits:[
-     {n:'A',lat:10.85275,lng:106.79815,desc:'Cổng Nam Khu Công Nghệ Cao TP.HCM – đường D1.',closed:false},
-     {n:'B',lat:10.85365,lng:106.79925,desc:'Cổng Bắc – hướng ĐH Quốc tế và khu R&D.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Phục vụ Khu Công Nghệ Cao TP.HCM (SHTP) – trụ sở Intel, Samsung, Nidec. Diện tích 913 ha.',
-   stats:{dist:'15,2 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L113',code:'L1-13',name:'ĐH Quốc Gia',en:'National University',type:'elevated',
-   lat:10.87036,lng:106.80287,dist:16.7,lines:[1],
-   exits:[
-     {n:'A',lat:10.86990,lng:106.80232,desc:'Cổng chính ĐHQG-HCM phía Nam – đường Võ Văn Ngân.',closed:false},
-     {n:'B',lat:10.87082,lng:106.80342,desc:'Phía Bắc – khu ký túc xá và các trường thành viên.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Phục vụ ĐHQG-HCM – cụm ĐH lớn nhất VN: hơn 100.000 sinh viên, 7 trường thành viên, 643 ha.',
-   stats:{dist:'16,7 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-
-  {id:'L114',code:'L1-14',name:'Bến Xe Suối Tiên',en:'Suoi Tien Terminal',type:'elevated',
-   lat:10.87974,lng:106.82169,dist:19.7,lines:[1],
-   exits:[
-     {n:'A',lat:10.87930,lng:106.82110,desc:'Bến xe Miền Đông mới – đầu mối xe khách liên tỉnh lớn nhất phía Nam.',closed:false},
-     {n:'B',lat:10.88018,lng:106.82228,desc:'Khu Du lịch Suối Tiên – cổng vào công viên, Xa lộ Hà Nội.',closed:false},
-   ],
-   img:'',imgCredit:'',
-   desc:'Ga cuối Tuyến 1. Đầu mối phía Đông kết nối Bến xe Miền Đông mới, Suối Tiên, và tương lai mở rộng về Bình Dương, Đồng Nai.',
-   stats:{dist:'19,7 km',type:'Trên cao',exits:2,opened:'22/12/2024'}},
-];
-
-// Footprints: computed from station center + track bearing + real dimensions
-// Underground: ~240m×60m; Elevated: ~150m×24m
-const FP={
-  'L101':{ug:true, c:[[10.77257,106.69904],[10.77293,106.69863],[10.77133,106.69716],[10.77097,106.69757]]},
-  'L102':{ug:true, c:[[10.77750,106.70397],[10.77780,106.70363],[10.77646,106.70241],[10.77616,106.70275]]},
-  'L103':{ug:true, c:[[10.78959,106.71486],[10.78984,106.71458],[10.78877,106.71360],[10.78852,106.71388]]},
-  'L104':{ug:false,c:[[10.80112,106.72031],[10.80130,106.72019],[10.80056,106.71903],[10.80038,106.71915]]},
-  'L105':{ug:false,c:[[10.80560,106.72969],[10.80578,106.72957],[10.80504,106.72841],[10.80486,106.72853]]},
-  'L106':{ug:false,c:[[10.80354,106.73946],[10.80372,106.73934],[10.80298,106.73818],[10.80280,106.73830]]},
-  'L107':{ug:false,c:[[10.79965,106.74990],[10.79983,106.74978],[10.79909,106.74862],[10.79891,106.74874]]},
-  'L108':{ug:false,c:[[10.80356,106.76158],[10.80374,106.76146],[10.80300,106.76030],[10.80282,106.76042]]},
-  'L109':{ug:false,c:[[10.80996,106.77246],[10.81008,106.77227],[10.80894,106.77154],[10.80882,106.77173]]},
-  'L110':{ug:false,c:[[10.82070,106.77983],[10.82073,106.77961],[10.81940,106.77937],[10.81937,106.77959]]},
-  // Thủ Đức: viaduct dọc Xa lộ Hà Nội, hướng Bắc (bearing ~355°)
-  'L111':{ug:false,c:[[10.83372,106.77398],[10.83374,106.77376],[10.83228,106.77362],[10.83226,106.77384]]},
-  'L112':{ug:false,c:[[10.85360,106.79926],[10.85375,106.79911],[10.85280,106.79814],[10.85265,106.79829]]},
-  'L113':{ug:false,c:[[10.87076,106.80343],[10.87091,106.80328],[10.86996,106.80231],[10.86981,106.80246]]},
-  'L114':{ug:false,c:[[10.88014,106.82225],[10.88029,106.82210],[10.87934,106.82113],[10.87919,106.82128]]},
-};
-
-window.onload=function(){
-/* MAP */
-const map=L.map('map',{center:[10.820,106.755],zoom:13,zoomControl:false});
-L.control.zoom({position:'bottomright'}).addTo(map);
-
-const osmTile=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
-  attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:19});
-const cartoTile=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-  attribution:'© <a href="https://carto.com">CARTO</a> © OSM',subdomains:'abcd',maxZoom:19});
-
-let cartoFail=0;
-cartoTile.on('tileerror',()=>{if(++cartoFail===3){map.removeLayer(cartoTile);osmTile.addTo(map);}});
-cartoTile.addTo(map);
-
-/* Line */
-const coords=ST.map(s=>[s.lat,s.lng]);
-L.polyline(coords,{color:'#003d6b',weight:9,opacity:.1}).addTo(map);
-L.polyline(coords,{color:'#0061A8',weight:5,opacity:.95}).addTo(map);
-
-/* Station markers */
-const SM={};
-ST.forEach((s,i)=>{
-  const ug=s.type==='underground',col=ug?'#005F3B':'#0061A8',r=ug?11:8;
-  const mk=hi=>L.divIcon({className:'',
-    html:`<div style="width:${r*2}px;height:${r*2}px;border-radius:50%;background:${hi?'#E04B00':col};border:3px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.35);cursor:pointer"></div>`,
-    iconSize:[r*2,r*2],iconAnchor:[r,r]});
-  const m=L.marker([s.lat,s.lng],{icon:mk(false),zIndexOffset:200})
-    .addTo(map).on('click',()=>openSt(i));
-  SM[s.id]={m,mk};
-  L.marker([s.lat,s.lng],{icon:L.divIcon({className:'',
-    html:`<div style="font-size:11px;font-weight:600;color:#1a1a1a;white-space:nowrap;text-shadow:0 1px 3px #fff,0 -1px 3px #fff,1px 0 3px #fff,-1px 0 3px #fff;pointer-events:none">${s.name}</div>`,
-    iconSize:[140,18],iconAnchor:[70,-4]}),interactive:false,zIndexOffset:100}).addTo(map);
-});
-
-/* Footprints + exits (zoom ≥ 15) */
-const FG=L.layerGroup(),EG=L.layerGroup();
-
-Object.entries(FP).forEach(([id,fp])=>{
-  const i=ST.findIndex(s=>s.id===id);
-  L.polygon(fp.c,{
-    color:fp.ug?'#C0392B':'#0061A8',weight:1.5,opacity:.6,
-    fillColor:fp.ug?'#E74C3C':'#2980B9',fillOpacity:fp.ug?.18:.12,
-  }).on('click',()=>{if(i>=0)openSt(i);}).addTo(FG);
-});
-
-ST.forEach(s=>{
-  s.exits.forEach(ex=>{
-    L.marker([ex.lat,ex.lng],{icon:L.divIcon({className:'',
-      html:`<div class="exi${ex.closed?' cls':''}">${ex.n}</div>`,
-      iconSize:[22,22],iconAnchor:[11,11]})})
-    .bindTooltip(`<b>Lối ra ${ex.n}</b>${ex.closed?' <em>(đóng)</em>':''}<br><span style="font-size:11px">${ex.desc}</span>`,
-      {direction:'top',offset:[0,-9]})
-    .on('click',()=>openSt(ST.indexOf(s),ex.n))
-    .addTo(EG);
-  });
-});
-
-function upLayers(){
-  const z=map.getZoom();
-  z>=15?(FG.addTo(map),EG.addTo(map)):(map.removeLayer(FG),map.removeLayer(EG));
-}
-map.on('zoomend',upLayers);upLayers();
-
-/* ── Station panel ── */
-let curSt=null;
-
-function openSt(i,exitN=null){
-  const s=ST[i]; curSt=i;
-
-  // On mobile: close panel first if another was open, then reopen
-  const panel=document.getElementById('panel');
-  const sp=document.getElementById('sp');
-
-  // Reset
-  document.getElementById('intro').style.display='none';
-  document.getElementById('explore-btn').style.display='none';
-  sp.classList.add('active');
-  panel.classList.remove('hidden');
-  document.getElementById('ptoggle').classList.remove('vis');
-
-  // Lines badges
-  const lel=document.getElementById('sp-lines'); lel.innerHTML='';
-  s.lines.forEach(l=>{
-    const b=document.createElement('span');b.className='lb '+LM[l].cl;b.textContent=LM[l].s;lel.appendChild(b);
-  });
-
-  document.getElementById('sp-name').textContent=s.name;
-  document.getElementById('sp-sub').textContent=s.en+' · '+s.code;
-  const tb=document.getElementById('sp-typebadge');
-  tb.textContent=s.type==='underground'?'🚇 Ga ngầm':'🚉 Ga trên cao';
-  tb.className=s.type==='underground'?'tb-ug':'tb-el';
-
-  // Exit buttons
-  const bw=document.getElementById('sp-exit-btns'); bw.innerHTML='';
-  s.exits.forEach(ex=>{
-    const b=document.createElement('button');
-    b.className='eb'+(ex.closed?' cls':'');
-    b.textContent=ex.n; b.dataset.n=ex.n;
-    b.addEventListener('click',()=>selExit(ex.n));
-    bw.appendChild(b);
-  });
-
-  // Image
-  const iw=document.getElementById('sp-imgwrap');
-  if(s.img){
-    document.getElementById('sp-img').src=s.img;
-    document.getElementById('sp-imgcredit').textContent=s.imgCredit||'';
-    iw.style.display='block';
-  } else { iw.style.display='none'; }
-
-  // Info
-  document.getElementById('sp-desc').textContent=s.desc;
-  document.getElementById('sp-stats').innerHTML=
-    `<div class="sc"><div class="sl">Từ Bến Thành</div><div class="sv">${s.stats.dist}</div></div>
-     <div class="sc"><div class="sl">Loại ga</div><div class="sv">${s.stats.type}</div></div>
-     <div class="sc"><div class="sl">Số lối ra</div><div class="sv">${s.stats.exits}</div></div>
-     <div class="sc"><div class="sl">Khai trương</div><div class="sv">${s.stats.opened}</div></div>`;
-
-  const li=document.getElementById('sp-linfo'); li.innerHTML='';
-  s.lines.forEach(l=>{
-    const r=document.createElement('div'); r.className='lrow';
-    r.innerHTML=`<div class="ldot" style="background:${LM[l].c}"></div>
-      <span><b>${LM[l].name}</b> ${LM[l].active?'(đang vận hành)':'(quy hoạch)'}</span>`;
-    li.appendChild(r);
-  });
-
-  document.getElementById('sp-exit-det').classList.remove('show');
-
-  // Pan map – offset so panel doesn't cover marker
-  const isWide=window.innerWidth>600;
-  const latLng=L.latLng(s.lat,s.lng);
-  if(exitN&&map.getZoom()<15) map.setZoom(16);
-  else if(map.getZoom()<14) map.setZoom(14);
-  // Offset pan to account for panel width on desktop
-  if(isWide){
-    const px=map.latLngToContainerPoint(latLng);
-    const target=map.containerPointToLatLng([px.x+150,px.y]);
-    map.panTo(target,{animate:true});
-  } else {
-    map.panTo(latLng,{animate:true});
-  }
-
-  // Highlight marker
-  Object.values(SM).forEach(({m,mk})=>m.setIcon(mk(false)));
-  SM[s.id].m.setIcon(SM[s.id].mk(true));
-
-  if(exitN) setTimeout(()=>selExit(exitN),200);
-}
-
-function selExit(n){
-  if(curSt===null) return;
-  const s=ST[curSt],ex=s.exits.find(e=>e.n===n);if(!ex) return;
-  document.querySelectorAll('.eb').forEach(b=>b.classList.toggle('act',b.dataset.n===n));
-  const det=document.getElementById('sp-exit-det'); det.classList.add('show');
-  document.getElementById('sp-exit-n').textContent='Lối ra '+n+(ex.closed?' (tạm đóng)':'');
-  document.getElementById('sp-exit-d').textContent=ex.desc;
-  map.panTo([ex.lat,ex.lng],{animate:true});
-  if(map.getZoom()<16) map.setZoom(16);
-}
-
-/* Close station → back to intro */
-document.getElementById('sp-close').addEventListener('click',()=>{
-  document.getElementById('sp').classList.remove('active');
-  document.getElementById('intro').style.display='';
-  document.getElementById('explore-btn').style.display='';
-  Object.values(SM).forEach(({m,mk})=>m.setIcon(mk(false)));
-  curSt=null;
-  // On mobile: also hide panel
-  if(window.innerWidth<=600){
-    document.getElementById('panel').classList.add('hidden');
-    document.getElementById('ptoggle').classList.add('vis');
-  }
-});
-
-/* Panel toggle */
-document.getElementById('explore-btn').addEventListener('click',()=>{
-  document.getElementById('panel').classList.add('hidden');
-  document.getElementById('ptoggle').classList.add('vis');
-});
-document.getElementById('ptoggle').addEventListener('click',()=>{
-  document.getElementById('panel').classList.remove('hidden');
-  document.getElementById('ptoggle').classList.remove('vis');
-});
-
-/* Search – opens overlay, no route */
-document.getElementById('sbtn').addEventListener('click',()=>{
-  document.getElementById('soverlay').classList.add('open');
-  document.getElementById('sinput').value='';
-  renderSearch('');
-  setTimeout(()=>document.getElementById('sinput').focus(),100);
-});
-document.getElementById('scancel').addEventListener('click',()=>{
-  document.getElementById('soverlay').classList.remove('open');
-});
-document.getElementById('sinput').addEventListener('input',e=>renderSearch(e.target.value));
-
-function renderSearch(q){
-  const res=document.getElementById('sresults'),t=q.toLowerCase();
-  const ms=q.length<1
-    ?ST.slice(0,8)
-    :ST.filter(s=>s.name.toLowerCase().includes(t)||s.en.toLowerCase().includes(t)||s.code.toLowerCase().includes(t));
-  res.innerHTML='';
-  ms.forEach(s=>{
-    const i=ST.indexOf(s),d=document.createElement('div');d.className='sitem';
-    const bs=s.lines.map(l=>`<span class="lb ${LM[l].cl}" style="font-size:10px;padding:2px 6px">${LM[l].s}</span>`).join('');
-    d.innerHTML=`<span class="siname">${s.name} <span style="font-size:11px;color:#bbb">${s.code}</span></span><span class="sibadges">${bs}</span>`;
-    d.addEventListener('click',()=>{
-      document.getElementById('soverlay').classList.remove('open');
-      openSt(i);
-    });
-    res.appendChild(d);
-  });
-}
-
-/* Legend */
-document.getElementById('legbtn').addEventListener('click',()=>{
-  const p=document.getElementById('legpanel'),o=p.classList.toggle('open');
-  document.getElementById('legbtn').textContent=(o?'▲':'▼')+' Chú giải';
-});
-
-}; // end onload
-</script>
+<div class="sheet-cover"></div>
+<script type="module" src="/src/index.js"></script>
 </body>
 </html>

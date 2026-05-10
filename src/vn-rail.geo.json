@@ -1,0 +1,295 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-1",
+        "name": "Line 1 - Bến Thành - Suối Tiên",
+        "nameEn": "Line 1 - Ben Thanh - Suoi Tien",
+        "color": "#0061A8",
+        "status": "operational",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.69760412214161, 10.770961382631782],
+          [106.70210069374842, 10.775519197322723],
+          [106.70778900333444, 10.78140424934281],
+          [106.71538058853123, 10.795992897691312],
+          [106.72282679768772, 10.798502364705818],
+          [106.73394444, 10.80055556],
+          [106.74177778, 10.80205556],
+          [106.75502778, 10.80825],
+          [106.75805556, 10.82116667],
+          [106.76380556, 10.83250],
+          [106.77166667, 10.84652778],
+          [106.78858333, 10.85894444],
+          [106.80086111, 10.86616667],
+          [106.81402778, 10.87955556]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-2",
+        "name": "Line 2 - Bến Thành - Tham Lương",
+        "nameEn": "Line 2 - Ben Thanh - Tham Luong",
+        "color": "#A05FA0",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6982, 10.7726],
+          [106.6920, 10.7750],
+          [106.6850, 10.7780],
+          [106.6780, 10.7810],
+          [106.6710, 10.7840],
+          [106.6640, 10.7870],
+          [106.6570, 10.7900],
+          [106.6500, 10.7930]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-3a",
+        "name": "Line 3A - Tân Kiên - Trung Lương",
+        "nameEn": "Line 3A - Tan Kien - Trung Luong",
+        "color": "#808080",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6200, 10.7500],
+          [106.6400, 10.7600],
+          [106.6600, 10.7700],
+          [106.6800, 10.7800]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-4",
+        "name": "Line 4 - Hiệp Phước - Thủ Thiêm",
+        "nameEn": "Line 4 - Hiep Phuoc - Thu Thiem",
+        "color": "#808080",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6500, 10.6800],
+          [106.6700, 10.7200],
+          [106.6900, 10.7600],
+          [106.7100, 10.8000],
+          [106.7300, 10.8200]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-5",
+        "name": "Line 5 - Sài Gòn Bridge - Bình Chánh",
+        "nameEn": "Line 5 - Saigon Bridge - Binh Chanh",
+        "color": "#808080",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.7200, 10.8100],
+          [106.7000, 10.7900],
+          [106.6800, 10.7700],
+          [106.6600, 10.7500]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-6",
+        "name": "Line 6 - Phú Lâm - Chợ Lớn - Võ Văn Kiệt",
+        "nameEn": "Line 6 - Phu Lam - Cho Lon - Vo Van Kiet",
+        "color": "#808080",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6300, 10.7600],
+          [106.6500, 10.7650],
+          [106.6700, 10.7700],
+          [106.6900, 10.7750]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bt-cangio",
+        "name": "Bến Thành - Cần Giờ",
+        "nameEn": "Ben Thanh - Can Gio",
+        "color": "#808080",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6982, 10.7726],
+          [106.6900, 10.7500],
+          [106.6800, 10.7200],
+          [106.6700, 10.6900],
+          [106.6600, 10.6600]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lrt-thuthiem",
+        "name": "LRT Thủ Thiêm - Long Thành",
+        "nameEn": "LRT Thu Thiem - Long Thanh",
+        "color": "#808080",
+        "status": "planned",
+        "type": "lrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.7300, 10.8000],
+          [106.7500, 10.8100],
+          [106.7800, 10.8200],
+          [106.8200, 10.8300],
+          [106.9000, 10.8400]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hsr-north-south",
+        "name": "HSR Bắc Nam",
+        "nameEn": "HSR North-South",
+        "color": "#8B0000",
+        "status": "planned",
+        "type": "hsr",
+        "width": 12
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6800, 10.8200],
+          [106.6850, 10.8000],
+          [106.6900, 10.7800],
+          [106.6950, 10.7600]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hsr-cantho",
+        "name": "HSR TPHCM - Cần Thơ",
+        "nameEn": "HSR HCMC - Can Tho",
+        "color": "#8B0000",
+        "status": "planned",
+        "type": "hsr",
+        "width": 12
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6900, 10.7700],
+          [106.6500, 10.7500],
+          [106.6000, 10.7300],
+          [106.5500, 10.7100]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hsr-locninh",
+        "name": "HSR TPHCM - Lộc Ninh",
+        "nameEn": "HSR HCMC - Loc Ninh",
+        "color": "#8B0000",
+        "status": "planned",
+        "type": "hsr",
+        "width": 12
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6900, 10.7700],
+          [106.7200, 10.8200],
+          [106.7500, 10.8700],
+          [106.7800, 10.9200]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hsr-trangbom",
+        "name": "HSR TPHCM - Trảng Bom",
+        "nameEn": "HSR HCMC - Trang Bom",
+        "color": "#8B0000",
+        "status": "planned",
+        "type": "hsr",
+        "width": 12
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6900, 10.7700],
+          [106.7500, 10.7800],
+          [106.8000, 10.7900],
+          [106.8500, 10.8000]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "conventional-rail",
+        "name": "Đường sắt thông thường",
+        "nameEn": "Conventional Railway",
+        "color": "#000000",
+        "status": "operational",
+        "type": "conventional",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6750, 10.7800],
+          [106.6800, 10.7750],
+          [106.6850, 10.7700],
+          [106.6900, 10.7650]
+        ]
+      }
+    }
+  ]
+}
