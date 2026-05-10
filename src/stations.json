@@ -1,0 +1,665 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ben-thanh",
+        "codes": [
+          {"line": "line-1", "code": "L1-01"}
+        ],
+        "name": "Bến Thành",
+        "nameEn": "Ben Thanh",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Bãi xe máy, Công viên 23/9, McDonald",
+            "location": [106.6968091865184, 10.77048848443868]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Công viên 23/9, Quảng trường Quách Thị Trang, Khách sạn NewWorld, Đường Lê Lai (dễ bắt xe)",
+            "location": [106.69753716237338, 10.771451536368719]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Cửa Tây Chợ Bến Thành",
+            "location": [106.69782506806696, 10.771954054499004]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Kết nối One Central Saigon (đang xây dựng)",
+            "status": "closed",
+            "location": [106.69801882316098, 10.770337779907939]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Kết nối One Central Saigon (đang xây dựng)",
+            "status": "closed",
+            "location": [106.69901791025075, 10.770680715300516]
+          },
+          {
+            "id": "exit-6",
+            "number": 6,
+            "name": "Lối ra 6",
+            "description": "Công ty Đường sắt, Bệnh viện Nhân dân Gia Định CS2, Trạm trung chuyển xe buýt Bến Thành (Hàm Nghi)",
+            "location": [106.69900014633743, 10.771554396516748]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.69760412214161, 10.770961382631782]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "opera-house",
+        "codes": [
+          {"line": "line-1", "code": "L1-02"}
+        ],
+        "name": "Nhà hát Thành phố",
+        "nameEn": "Opera House",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.7016142223085, 10.775303483071848]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.7012783750309, 10.774947997942585]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.70157351183641, 10.77464425733805]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.70226413924162, 10.776075858389586]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Lối ra 5",
+            "location": [106.70261161448603, 10.77575155039193]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.70210069374842, 10.775519197322723]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ba-son",
+        "codes": [
+          {"line": "line-1", "code": "L1-03"}
+        ],
+        "name": "Ba Son",
+        "nameEn": "Ba Son",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.70761418159282, 10.780797461190549]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.70799630924232, 10.781067233554017]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.70845524330406, 10.78188327669254]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.70788986696503, 10.781907887071286]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Lối ra 5",
+            "location": [106.70842724666993, 10.782436640674119]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.70778900333444, 10.78140424934281]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "van-thanh",
+        "codes": [
+          {"line": "line-1", "code": "L1-04"}
+        ],
+        "name": "Văn Thánh",
+        "nameEn": "Van Thanh",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra duy nhất",
+            "location": [106.71538058853123, 10.795992897691312]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.71538058853123, 10.795992897691312]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tan-cang",
+        "codes": [
+          {"line": "line-1", "code": "L1-05"}
+        ],
+        "name": "Tân Cảng",
+        "nameEn": "Tan Cang",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.72270895161785, 10.798500306366574]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.72268120159717, 10.799134236791964]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.72282679768772, 10.798502364705818]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "thao-dien",
+        "codes": [
+          {"line": "line-1", "code": "L1-06"}
+        ],
+        "name": "Thảo Điền",
+        "nameEn": "Thao Dien",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.73324389288018, 10.80068522876572]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.73325615289178, 10.800406722100492]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.73383614728228, 10.7998754029949]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.73303391572207, 10.799231931226553]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Lối ra 5",
+            "location": [106.73374703904858, 10.799290036397128]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.73394444, 10.80055556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "an-phu",
+        "codes": [
+          {"line": "line-1", "code": "L1-07"}
+        ],
+        "name": "An Phú",
+        "nameEn": "An Phu",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.74155516072362, 10.802184977243236]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.74185004789051, 10.802076486880134]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.74226522574334, 10.801400541335013]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.74219253903574, 10.80087295445482]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.74177778, 10.80205556]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rach-chiec",
+        "codes": [
+          {"line": "line-1", "code": "L1-08"}
+        ],
+        "name": "Rạch Chiếc",
+        "nameEn": "Rach Chiec",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.75499956373248, 10.808286777555303]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.75595927821013, 10.807838500248566]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.75579467096787, 10.807555494905241]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.75619722482432, 10.807724273794168]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Lối ra 5",
+            "location": [106.7560360246324, 10.807415550014737]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.75502778, 10.80825]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "phuoc-long",
+        "codes": [
+          {"line": "line-1", "code": "L1-09"}
+        ],
+        "name": "Phước Long",
+        "nameEn": "Phuoc Long",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.7580817678812, 10.821302708760815]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.75804931037307, 10.82042651967905]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.75864326335184, 10.820717431425111]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.75895269162217, 10.821013039856606]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Lối ra 5",
+            "location": [106.75897804807843, 10.82064961424253]
+          },
+          {
+            "id": "exit-6",
+            "number": 6,
+            "name": "Lối ra 6",
+            "description": "Lối ra 6",
+            "location": [106.75910729180772, 10.820955334749286]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.75805556, 10.82116667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "binh-thai",
+        "codes": [
+          {"line": "line-1", "code": "L1-10"}
+        ],
+        "name": "Bình Thái",
+        "nameEn": "Binh Thai",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.76371017625763, 10.832403064473024]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.76456214566706, 10.831990424738088]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.76475731077386, 10.831867211317304]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.76380556, 10.83250]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "thu-duc",
+        "codes": [
+          {"line": "line-1", "code": "L1-11"}
+        ],
+        "name": "Thủ Đức",
+        "nameEn": "Thu Duc",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.77152119580582, 10.846181381727424]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.77209069042705, 10.84551357148785]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.77224884989249, 10.84581371693153]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.77166667, 10.84652778]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "khu-cong-nghe-cao",
+        "codes": [
+          {"line": "line-1", "code": "L1-12"}
+        ],
+        "name": "Khu Công nghệ cao",
+        "nameEn": "High-Tech Park",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.78857247808148, 10.858911666563714]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.7889916846617, 10.85843859816998]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.78875356892698, 10.858058965895129]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.78910138528693, 10.858258701111318]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.78858333, 10.85894444]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dai-hoc-quoc-gia",
+        "codes": [
+          {"line": "line-1", "code": "L1-13"}
+        ],
+        "name": "Đại học Quốc gia",
+        "nameEn": "National University",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.80090108411446, 10.866191806032957]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.8005884019824, 10.866251339424124]
+          },
+          {
+            "id": "exit-3",
+            "number": 3,
+            "name": "Lối ra 3",
+            "description": "Lối ra 3",
+            "location": [106.80090659727392, 10.866441255848104]
+          },
+          {
+            "id": "exit-4",
+            "number": 4,
+            "name": "Lối ra 4",
+            "description": "Lối ra 4",
+            "location": [106.80154594401075, 10.865657335926207]
+          },
+          {
+            "id": "exit-5",
+            "number": 5,
+            "name": "Lối ra 5",
+            "description": "Lối ra 5",
+            "location": [106.80186775767389, 10.865828342780402]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.80086111, 10.86616667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "suoi-tien",
+        "codes": [
+          {"line": "line-1", "code": "L1-14"}
+        ],
+        "name": "Bến xe Suối Tiên",
+        "nameEn": "Suoi Tien Bus Station",
+        "lines": ["line-1"],
+        "status": "operational",
+        "exits": [
+          {
+            "id": "exit-1",
+            "number": 1,
+            "name": "Lối ra 1",
+            "description": "Lối ra 1",
+            "location": [106.81384454118292, 10.87913409981084]
+          },
+          {
+            "id": "exit-2",
+            "number": 2,
+            "name": "Lối ra 2",
+            "description": "Lối ra 2",
+            "location": [106.81446302207657, 10.879976326432748]
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.81402778, 10.87955556]
+      }
+    }
+  ]
+}

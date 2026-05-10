@@ -1,0 +1,44 @@
+{
+  "name": "railrouter-vn",
+  "version": "1.0.0",
+  "description": "A progressive web app that lets you explore HCMC Metro routes in HCMC, Viet Nam",
+  "keywords": [
+    "vietnam",
+    "hcmc",
+    "metro",
+    "train",
+    "subway",
+    "map",
+    "transport"
+  ],
+  "author": "RailRouter VN",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite --port 4567",
+    "build": "vite build",
+    "preview": "vite preview --port 4567"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-language": "~1.0.0",
+    "fuse.js": "~6.6.2",
+    "mapbox-gl": "~2.10.0",
+    "regenerator-runtime": "~0.13.10",
+    "workbox-cacheable-response": "~6.5.4",
+    "workbox-expiration": "~6.5.4",
+    "workbox-google-analytics": "~6.5.4",
+    "workbox-routing": "~6.5.4",
+    "workbox-strategies": "~6.5.4"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "browserslist": [
+    ">0.25%",
+    "not dead",
+    "not ie 11",
+    "not chrome < 51",
+    "not op_mini all",
+    "not Android > 1",
+    "not safari < 10"
+  ]
+}

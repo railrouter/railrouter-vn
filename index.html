@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RailRouter VN – Khám phá Metro TPHCM – Bản đồ tàu điện TP.HCM</title>
+<link rel="stylesheet" type="text/css" href="/src/index.css" />
+<meta name="description" content="Khám phá tuyến Metro tại TP. Hồ Chí Minh" />
+<link rel="preload" as="fetch" href="/src/vn-rail.geo.json" crossorigin="anonymous" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="RailRouter VN" />
+<meta name="twitter:url" property="og:url" content="https://railrouter-vn.netlify.app" />
+<meta name="twitter:title" property="og:title" content="RailRouter VN" />
+<meta name="twitter:description" property="og:description" content="Khám phá tuyến Metro tại TP. Hồ Chí Minh" />
+<link rel="manifest" href="/src/index.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="RailRouter VN" />
+<meta name="theme-color" content="#00A868" />
+</head>
+<body>
+<div id="station" class="sheet"></div>
+<div id="map"></div>
+<div id="home" class="sheet">
+  <button type="button" class="sheet-close"></button>
+  <h1>RailRouter VN</h1>
+  <p>
+    <strong>Khám phá</strong> tuyến <abbr title="Metro">Metro</abbr> tại TP. Hồ Chí Minh.
+    <strong>Phóng to</strong> để xem vị trí các ga và lối ra/vào.
+  </p>
+  <p>
+    <span class="ib">Dữ liệu: © <a href="https://maur.hochiminhcity.gov.vn" target="_blank">MAUR</a></span>
+    <span class="ib">© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a></span>
+  </p>
+  <p>
+    Tham khảo:
+    <a href="https://railrouter.sg/" target="_blank" class="ib">🚇 RailRouter SG</a>
+  </p>
+  <p>
+    Liên hệ: <a href="mailto:contact@ngthuc.com">contact@ngthuc.com</a>
+  </p>
+  <button type="button" class="btn" id="btn-close-home">Khám phá ngay!</button>
+</div>
+<details id="legend">
+  <summary>Chú giải</summary>
+  <div>
+    <div style="width:40px;height:4px;background:#0061A8;border-radius:2px"></div>
+    Tuyến 1 (vận hành)
+  </div>
+  <div>
+    <div style="width:40px;height:4px;background:#A05FA0;border-radius:2px"></div>
+    Tuyến 2 (quy hoạch)
+  </div>
+  <div>
+    <div style="width:40px;height:4px;background:#808080;border-radius:2px;opacity:0.5"></div>
+    MRT/LRT (quy hoạch)
+  </div>
+  <div>
+    <div style="width:40px;height:8px;background:#8B0000;border-radius:2px;opacity:0.5"></div>
+    HSR (quy hoạch)
+  </div>
+  <div>
+    <div style="width:40px;height:4px;background:#000000;border-radius:2px"></div>
+    Đường sắt thông thường
+  </div>
+  <div>
+    <div style="width:14px;height:14px;background:#E8A000;border-radius:3px"></div>
+    Lối ra/vào ga
+  </div>
+</details>
+<button id="search-btn" class="map-control-btn" title="Tìm kiếm ga">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.35-4.35"></path>
+  </svg>
+</button>
+<div id="logo" tabindex="-1">
+  <svg viewBox="0 0 20 20" width="44" height="44">
+    <title>RailRouter VN</title>
+    <circle cx="10" cy="10" r="9.45" fill="#fff" stroke="#00A868" stroke-width="1.1" />
+    <path fill="#00A868" d="M12.944 11.375H7.09c-1.02 0-1.02-.98-1.02-1.293 0-1.042.203-2.144.51-3.09.258-.77.68-1.716 3.437-1.716 2.75 0 3.18.953 3.437 1.715.313.955.51 2.044.51 3.086 0 .32 0 1.293-1.02 1.293m-1.042 1.204c0-.272.238-.51.518-.51.285 0 .517.23.517.51 0 .286-.26.517-.545.517-.272 0-.51-.23-.51-.516m-4.29.517c-.29 0-.523-.23-.523-.516 0-.272.23-.51.51-.51.285 0 .516.23.516.51 0 .286-.23.517-.517.517m7.39-2.04c0-2.077-.79-4.936-1.537-5.685-.817-.816-2.587-.864-3.438-.864-.87 0-2.634.04-3.45.865C5.795 6.115 5 8.972 5 11.048c0 1.02 0 2.723 1.02 2.723h.73l-.86 1.73h1.715l.34-1.722h4.132l.34 1.702h1.722l-.86-1.702h.68c1.04 0 1.04-1.73 1.04-2.743l-.028.013z" />
+    <circle cx="16" cy="16" r="4" fill="#DA251D" />
+    <text x="16" y="18.5" text-anchor="middle" fill="#fff" font-size="5" font-weight="bold">VN</text>
+  </svg>
+</div>
+<div id="search" hidden>
+  <div id="search-field-container">
+    <input id="search-field" type="search" autocomplete="off" spellcheck="false" placeholder="&ldquo;Bến Thành&rdquo; hoặc &ldquo;L1-01&rdquo;" />
+    <button type="button" id="search-cancel">Huỷ</button>
+  </div>
+  <ul id="search-results"></ul>
+</div>
+<div class="sheet-cover"></div>
+<script type="module" src="/src/index.js"></script>
+</body>
+</html>
