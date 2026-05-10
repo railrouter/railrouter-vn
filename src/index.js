@@ -1,6 +1,8 @@
 import 'regenerator-runtime/runtime';
 import mapboxgl from 'mapbox-gl';
 import Fuse from 'fuse.js';
+import railData from './vn-rail.geo.json';
+import stationsData from './stations.json';
 
 const $ = (id) => document.getElementById(id);
 let stationsDataGlobal = null;
@@ -80,12 +82,6 @@ console.log('RailRouter VN initialized');
 // Load rail data
 map.on('load', async () => {
   try {
-    const railResponse = await fetch('/src/vn-rail.geo.json');
-    const railData = await railResponse.json();
-    
-    const stationsResponse = await fetch('/src/stations.json');
-    const stationsData = await stationsResponse.json();
-    
     // Store globally for search
     stationsDataGlobal = stationsData;
     
