@@ -6,11 +6,15 @@
       "properties": {
         "id": "ben-thanh",
         "codes": [
-          {"line": "line-1", "code": "L1-01"}
+          {"line": "line-1", "code": "L1-01"},
+          {"line": "line-2", "code": "L2-07"},
+          {"line": "line-3a", "code": "L3A-01"},
+          {"line": "line-4", "code": "L4-14"},
+          {"line": "line-12", "code": "L12-01"}
         ],
         "name": "Bến Thành",
         "nameEn": "Ben Thanh",
-        "lines": ["line-1"],
+        "lines": ["line-1", "line-2", "line-3a", "line-4", "line-12"],
         "status": "operational",
         "exits": [
           {
@@ -24,7 +28,7 @@
             "id": "exit-2",
             "number": 2,
             "name": "Lối ra 2",
-            "description": "Công viên 23/9, Quảng trường Quách Thị Trang, Khách sạn NewWorld, Đường Lê Lai (dễ bắt xe)",
+            "description": "Công viên 23/9, Quảng trường Quách Thị Trang, Khách sạn NewWorld, Đường Lê Lai",
             "location": [106.69753716237338, 10.771451536368719]
           },
           {
@@ -203,11 +207,12 @@
       "properties": {
         "id": "tan-cang",
         "codes": [
-          {"line": "line-1", "code": "L1-05"}
+          {"line": "line-1", "code": "L1-05"},
+          {"line": "line-5", "code": "L5-01"}
         ],
         "name": "Tân Cảng",
         "nameEn": "Tan Cang",
-        "lines": ["line-1"],
+        "lines": ["line-1", "line-5"],
         "status": "operational",
         "exits": [
           {
