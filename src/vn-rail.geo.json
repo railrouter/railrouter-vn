@@ -64,7 +64,7 @@
         "name": "Line 2 - Bến Thành - Tham Lương",
         "nameEn": "Line 2 - Ben Thanh - Tham Luong",
         "color": "#A05FA0",
-        "status": "planned",
+        "status": "construction",
         "type": "mrt",
         "width": 4
       },
@@ -174,7 +174,7 @@
         "name": "Bến Thành - Cần Giờ",
         "nameEn": "Ben Thanh - Can Gio",
         "color": "#808080",
-        "status": "under_construction",
+        "status": "construction",
         "type": "mrt",
         "width": 4
       },
@@ -193,7 +193,7 @@
         "name": "LRT Thủ Thiêm - Long Thành",
         "nameEn": "LRT Thu Thiem - Long Thanh",
         "color": "#808080",
-        "status": "planned",
+        "status": "construction",
         "type": "lrt",
         "width": 4
       },
