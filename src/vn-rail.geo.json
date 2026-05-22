@@ -60,13 +60,12 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "line-2",
-        "name": "Line 2 - Bến Thành - Tham Lương",
-        "nameEn": "Line 2 - Ben Thanh - Tham Luong",
-        "color": "#A05FA0",
+        "id": "line-2-segment-1",
+        "line": "line-2",
+        "name": "Bến Thành - Thủ Thiêm",
         "status": "construction",
-        "type": "mrt",
-        "width": 4
+        "color": "#A05FA0",
+        "width": 6
       },
       "geometry": {
         "type": "LineString",
@@ -77,8 +76,44 @@
           [106.72269285786459, 10.77332124453868],
           [106.71404608118581, 10.771451963317759],
           [106.70555205096431, 10.77079439155629],
+          [106.69760412214161, 10.770961382631782]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-2-segment-2",
+        "line": "line-2",
+        "name": "Bến Thành - Tham Lương",
+        "status": "construction",
+        "color": "#A05FA0",
+        "width": 6
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
           [106.69760412214161, 10.770961382631782],
-          [106.69110912137651, 10.772602636837854]
+          [106.69110912137651, 10.772602636837854],
+          [106.63056341041913, 10.821061533354584]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "line-2-segment-3",
+        "line": "line-2",
+        "name": "Tham Lương - Củ Chi",
+        "status": "planned",
+        "color": "#A05FA0",
+        "width": 6
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.63056341041913, 10.821061533354584],
+          [106.500000, 10.950000]
         ]
       }
     },
