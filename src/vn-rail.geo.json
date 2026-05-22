@@ -65,7 +65,7 @@
         "name": "Bến Thành - Thủ Thiêm",
         "nameEn": "Ben Thanh - Thu Thiem",
         "status": "construction",
-        "color": "#A05FA0",
+        "color": "#cc205f",
         "type": "mrt",
         "width": 6
       },
@@ -90,7 +90,7 @@
         "name": "Bến Thành - Tham Lương",
         "nameEn": "Ben Thanh - Tham Luong",
         "status": "construction",
-        "color": "#A05FA0",
+        "color": "#cc205f",
         "type": "mrt",
         "width": 6
       },
@@ -111,7 +111,7 @@
         "name": "Tham Lương - Củ Chi",
         "nameEn": "Tham Luong - Cu Chi",
         "status": "planned",
-        "color": "#A05FA0",
+        "color": "#cc205f",
         "type": "mrt",
         "width": 6
       },
