@@ -63,8 +63,10 @@
         "id": "line-2-segment-1",
         "line": "line-2",
         "name": "Bến Thành - Thủ Thiêm",
+        "nameEn": "Ben Thanh - Thu Thiem",
         "status": "construction",
         "color": "#A05FA0",
+        "type": "mrt",
         "width": 6
       },
       "geometry": {
@@ -86,8 +88,10 @@
         "id": "line-2-segment-2",
         "line": "line-2",
         "name": "Bến Thành - Tham Lương",
+        "nameEn": "Ben Thanh - Tham Luong",
         "status": "construction",
         "color": "#A05FA0",
+        "type": "mrt",
         "width": 6
       },
       "geometry": {
@@ -102,11 +106,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "line-2-segment-3",
+        "id": "line-2-segment-2",
         "line": "line-2",
         "name": "Tham Lương - Củ Chi",
+        "nameEn": "Tham Luong - Cu Chi",
         "status": "planned",
         "color": "#A05FA0",
+        "type": "mrt",
         "width": 6
       },
       "geometry": {
