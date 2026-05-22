@@ -259,14 +259,40 @@ map.on('load', async () => {
       id: 'rail-lines-layer',
       type: 'line',
       source: 'rail-lines',
-      filter: ['all',
-        ['==', ['get', 'type'], 'mrt'],
-        ['==', ['get', 'status'], 'operational']
-      ],
+
+      // Chỉ lọc MRT thôi
+      filter: ['==', ['get', 'type'], 'mrt'],
+
       paint: {
-        'line-color': ['get', 'color'],
+        // operational + construction dùng màu thật
+        // planned chuyển sang xám
+        'line-color': [
+          'case',
+
+          ['==', ['get', 'status'], 'planned'],
+          '#999999',
+
+          ['get', 'color']
+        ],
+
         'line-width': ['get', 'width'],
-        'line-opacity': 1
+
+        // construction dùng nét đứt
+        'line-dasharray': [
+          'case',
+
+          ['==', ['get', 'status'], 'construction'],
+          ['literal', [2, 2]],
+
+          ['literal', [1, 0]]
+        ],
+
+        'line-opacity': [
+          'case',
+          ['==', ['get', 'status'], 'planned'],
+          0.5,
+          1
+        ]
       }
     });
 
