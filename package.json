@@ -23,6 +23,7 @@
     "fuse.js": "~6.6.2",
     "mapbox-gl": "~2.10.0",
     "regenerator-runtime": "~0.13.10",
+    "topojson-client": "^3.1.0",
     "workbox-cacheable-response": "~6.5.4",
     "workbox-expiration": "~6.5.4",
     "workbox-google-analytics": "~6.5.4",

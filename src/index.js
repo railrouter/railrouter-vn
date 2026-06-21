@@ -1,8 +1,12 @@
 import 'regenerator-runtime/runtime';
 import mapboxgl from 'mapbox-gl';
 import Fuse from 'fuse.js';
+import * as topojson from 'topojson-client';
 import railData from './vn-rail.geo.json';
 import stationsData from './stations.json';
+import hoangSaTopoJSON from './islands/hoang-sa.json';
+import truongSaTopoJSON from './islands/truong-sa.json';
+import islandsPointsData from './islands/vietnam-islands.geo.json';
 import { getCurrentLanguage, setLanguage, t } from './i18n.js';
 
 const $ = (id) => document.getElementById(id);
@@ -77,6 +81,21 @@ function updateMapLabels() {
     
     console.log('Updating map labels to:', lang);
     window.map.setLayoutProperty('stations-labels', 'text-field', textField);
+    
+    // Update archipelago labels if layer exists
+    if (window.map.getLayer('archipelago-labels-layer')) {
+      const archipelagoTextField = lang === 'en' 
+        ? ['concat', ['get', 'nameEn'], '\n(', ['get', 'name'], ')']
+        : ['concat', ['get', 'name'], '\n(', ['get', 'nameEn'], ')'];
+      window.map.setLayoutProperty('archipelago-labels-layer', 'text-field', archipelagoTextField);
+    }
+    
+    // Update island point labels if layer exists
+    if (window.map.getLayer('island-points-labels')) {
+      const islandTextField = lang === 'en' ? ['get', 'nameEn'] : ['get', 'name'];
+      window.map.setLayoutProperty('island-points-labels', 'text-field', islandTextField);
+    }
+    
     console.log('Map labels updated successfully');
   } catch (e) {
     // Map not initialized yet, skip silently
@@ -137,17 +156,17 @@ $logo.style.cursor = 'pointer';
 // Mapbox access token (using template's token for now)
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlZWF1biIsImEiOiJja2NydG83cWMwaGJsMnBqdjR5aHc3MzdlIn0.YGTZpi7JQMquEOv9E8K_bg';
 
-// HCMC center coordinates
-const center = [106.7, 10.8];
-const bounds = [106.6, 10.7, 106.9, 10.9];
+// HCMC center coordinates, but allow panning to see entire Vietnam including islands
+const center = [106.7, 10.8]; // TP.HCM
+const bounds = [102.0, 8.0, 115.0, 24.0]; // Expanded to include Hoang Sa and Truong Sa
 
 // Initialize map
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v11',
   center,
-  zoom: 12,
-  bounds,
+  zoom: 12, // Focus on HCMC
+  maxBounds: bounds, // Allow panning within Vietnam bounds
   renderWorldCopies: false,
   boxZoom: false,
 });
@@ -450,6 +469,169 @@ map.on('load', async () => {
           ['==', ['get', 'status'], 'closed'], 0.5,
           1
         ]
+      }
+    });
+
+    // Load official TopoJSON data for Hoang Sa and Truong Sa from GADM
+    // These contain complete polygon data for all islands including submerged features
+    
+    // Convert TopoJSON to GeoJSON for Mapbox
+    const hoangSaGeoJSON = topojson.feature(hoangSaTopoJSON, hoangSaTopoJSON.objects.gadm36_XPI_0);
+    const truongSaGeoJSON = topojson.feature(truongSaTopoJSON, truongSaTopoJSON.objects.gadm36_XSP_0);
+    
+    // Add Hoang Sa (Paracel Islands) - complete official data
+    map.addSource('hoang-sa', {
+      type: 'geojson',
+      data: hoangSaGeoJSON
+    });
+
+    // Add Truong Sa (Spratly Islands) - complete official data
+    map.addSource('truong-sa', {
+      type: 'geojson',
+      data: truongSaGeoJSON
+    });
+
+    // Render Hoang Sa polygons with better visibility
+    map.addLayer({
+      id: 'hoang-sa-fill',
+      type: 'fill',
+      source: 'hoang-sa',
+      paint: {
+        'fill-color': '#DA251D',
+        'fill-opacity': 0.5
+      }
+    });
+
+    map.addLayer({
+      id: 'hoang-sa-outline',
+      type: 'line',
+      source: 'hoang-sa',
+      paint: {
+        'line-color': '#DA251D',
+        'line-width': 3
+      }
+    });
+
+    // Render Truong Sa polygons with better visibility
+    map.addLayer({
+      id: 'truong-sa-fill',
+      type: 'fill',
+      source: 'truong-sa',
+      paint: {
+        'fill-color': '#DA251D',
+        'fill-opacity': 0.5
+      }
+    });
+
+    map.addLayer({
+      id: 'truong-sa-outline',
+      type: 'line',
+      source: 'truong-sa',
+      paint: {
+        'line-color': '#DA251D',
+        'line-width': 3
+      }
+    });
+
+    // Add single label for each archipelago at center
+    // Calculate center points for labels
+    const hoangSaCenter = [112.0, 16.5]; // Approximate center of Hoang Sa
+    const truongSaCenter = [111.9, 10.0]; // Approximate center of Truong Sa
+    
+    // Create GeoJSON for labels
+    const labelsData = {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: hoangSaCenter
+          },
+          properties: {
+            name: 'Quần đảo Hoàng Sa',
+            nameEn: 'Paracel Islands',
+            type: 'hoang-sa'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: truongSaCenter
+          },
+          properties: {
+            name: 'Quần đảo Trường Sa',
+            nameEn: 'Spratly Islands',
+            type: 'truong-sa'
+          }
+        }
+      ]
+    };
+
+    // Add source for labels
+    map.addSource('archipelago-labels', {
+      type: 'geojson',
+      data: labelsData
+    });
+
+    // Add label layer
+    const lang = getCurrentLanguage();
+    map.addLayer({
+      id: 'archipelago-labels-layer',
+      type: 'symbol',
+      source: 'archipelago-labels',
+      layout: {
+        'text-field': lang === 'en' 
+          ? ['concat', ['get', 'nameEn'], '\n(', ['get', 'name'], ')']
+          : ['concat', ['get', 'name'], '\n(', ['get', 'nameEn'], ')'],
+        'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+        'text-size': 16,
+        'text-anchor': 'center'
+      },
+      paint: {
+        'text-color': '#DA251D',
+        'text-halo-color': '#ffffff',
+        'text-halo-width': 3
+      }
+    });
+
+    // Add individual island points for small islands not in GADM polygons
+    map.addSource('island-points', {
+      type: 'geojson',
+      data: islandsPointsData
+    });
+
+    // Add island point markers
+    map.addLayer({
+      id: 'island-points-layer',
+      type: 'circle',
+      source: 'island-points',
+      paint: {
+        'circle-radius': 4,
+        'circle-color': '#DA251D',
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#ffffff'
+      }
+    });
+
+    // Add island point labels (show at higher zoom)
+    map.addLayer({
+      id: 'island-points-labels',
+      type: 'symbol',
+      source: 'island-points',
+      minzoom: 8,
+      layout: {
+        'text-field': lang === 'en' ? ['get', 'nameEn'] : ['get', 'name'],
+        'text-font': ['Open Sans Semibold', 'Arial Unicode MS Regular'],
+        'text-size': 11,
+        'text-offset': [0, 1.2],
+        'text-anchor': 'top'
+      },
+      paint: {
+        'text-color': '#DA251D',
+        'text-halo-color': '#ffffff',
+        'text-halo-width': 2
       }
     });
 

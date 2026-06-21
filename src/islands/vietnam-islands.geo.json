@@ -1,0 +1,395 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Phú Lâm",
+        "nameEn": "Woody Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.3373, 16.8333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Linh Côn",
+        "nameEn": "Lincoln Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.7333, 16.9667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Tri Tôn",
+        "nameEn": "Triton Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [111.2167, 15.7833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Hoàng Sa",
+        "nameEn": "Pattle Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [111.6167, 16.0500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Song Tử Tây",
+        "nameEn": "Southwest Cay",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.3333, 11.4333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Trường Sa",
+        "nameEn": "Spratly Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [111.9167, 8.6333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Ba Bình",
+        "nameEn": "Namyit Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.8333, 10.1833]
+      }
+    },
+    {
+      "type": "Feature",
+        "properties": {
+        "name": "Đảo Sinh Tồn",
+        "nameEn": "Sin Cowe Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.2167, 9.8833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Sơn Ca",
+        "nameEn": "Sand Cay",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.4667, 10.3833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Phan Vinh",
+        "nameEn": "Pearson Reef",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.6500, 8.9500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Bắc",
+        "nameEn": "North Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.5333, 17.0833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Trung",
+        "nameEn": "Middle Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.4000, 16.9667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Nam",
+        "nameEn": "South Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.3500, 16.8833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Quang Hòa",
+        "nameEn": "Duncan Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.7167, 16.4000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Quang Ảnh",
+        "nameEn": "Palm Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.6833, 16.4333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Hữu Nhật",
+        "nameEn": "Robert Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.4500, 16.5500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Duy Mộng",
+        "nameEn": "Drummond Island",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.6000, 16.5000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Lớn",
+        "nameEn": "Antelope Reef",
+        "group": "Hoàng Sa",
+        "groupEn": "Paracel Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [111.6333, 16.4667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo An Bang",
+        "nameEn": "Amboyna Cay",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.9167, 7.8667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Loại Ta",
+        "nameEn": "Loaita Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.4167, 10.7167]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Thị Tứ",
+        "nameEn": "Thitu Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.2833, 11.0500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Nam Yết",
+        "nameEn": "Nanshan Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.2167, 10.7500]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Tây",
+        "nameEn": "West York Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.5000, 11.0833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Đông",
+        "nameEn": "Parola Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.5167, 11.4667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Hoa Lau",
+        "nameEn": "Swallow Reef",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.8333, 7.3833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Lát",
+        "nameEn": "Flat Island",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.8833, 10.8167]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Tây A",
+        "nameEn": "West Reef",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.1667, 8.8333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Đông A",
+        "nameEn": "East Reef",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.3333, 8.8333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Nam",
+        "nameEn": "South Reef",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.2500, 8.6667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Đảo Đá Bắc",
+        "nameEn": "North Reef",
+        "group": "Trường Sa",
+        "groupEn": "Spratly Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.2500, 9.0000]
+      }
+    }
+  ]
+}
