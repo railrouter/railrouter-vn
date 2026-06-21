@@ -9,7 +9,8 @@
       "Bash(npm start *)",
       "Bash(mkdir -p src/lines src/stations)",
       "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('src/lines/tphcm.geo.json'\\)\\);JSON.parse\\(require\\('fs'\\).readFileSync\\('src/lines/dongnai.geo.json'\\)\\);JSON.parse\\(require\\('fs'\\).readFileSync\\('src/lines/phuquoc.geo.json'\\)\\);JSON.parse\\(require\\('fs'\\).readFileSync\\('src/stations/tphcm.json'\\)\\);JSON.parse\\(require\\('fs'\\).readFileSync\\('src/stations/dongnai.json'\\)\\);JSON.parse\\(require\\('fs'\\).readFileSync\\('src/stations/phuquoc.json'\\)\\);console.log\\('all valid'\\)\")",
-      "Bash(rm src/vn-rail.geo.json src/stations.json)"
+      "Bash(rm src/vn-rail.geo.json src/stations.json)",
+      "Bash(npm run *)"
     ]
   }
 }
