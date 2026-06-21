@@ -6,11 +6,26 @@
       "properties": {
         "id": "ben-thanh",
         "codes": [
-          {"line": "line-1", "code": "L1-01"},
-          {"line": "line-2", "code": "L2-07"},
-          {"line": "line-3a", "code": "L3A-01"},
-          {"line": "line-4", "code": "L4-14"},
-          {"line": "line-12", "code": "L12-01"}
+          {
+            "line": "line-1",
+            "code": "L1-01"
+          },
+          {
+            "line": "line-2",
+            "code": "L2-07"
+          },
+          {
+            "line": "line-3a",
+            "code": "L3A-01"
+          },
+          {
+            "line": "line-4",
+            "code": "L4-14"
+          },
+          {
+            "line": "line-12",
+            "code": "L12-01"
+          }
         ],
         "name": "Bến Thành",
         "nameEn": "Ben Thanh",
@@ -73,7 +88,10 @@
       "properties": {
         "id": "opera-house",
         "codes": [
-          {"line": "line-1", "code": "L1-02"}
+          {
+            "line": "line-1",
+            "code": "L1-02"
+          }
         ],
         "name": "Nhà hát Thành phố",
         "nameEn": "Opera House",
@@ -127,7 +145,10 @@
       "properties": {
         "id": "ba-son",
         "codes": [
-          {"line": "line-1", "code": "L1-03"}
+          {
+            "line": "line-1",
+            "code": "L1-03"
+          }
         ],
         "name": "Ba Son",
         "nameEn": "Ba Son",
@@ -181,7 +202,10 @@
       "properties": {
         "id": "van-thanh",
         "codes": [
-          {"line": "line-1", "code": "L1-04"}
+          {
+            "line": "line-1",
+            "code": "L1-04"
+          }
         ],
         "name": "Văn Thánh",
         "nameEn": "Van Thanh Park",
@@ -207,8 +231,14 @@
       "properties": {
         "id": "tan-cang",
         "codes": [
-          {"line": "line-1", "code": "L1-05"},
-          {"line": "line-5", "code": "L5-01"}
+          {
+            "line": "line-1",
+            "code": "L1-05"
+          },
+          {
+            "line": "line-5",
+            "code": "L5-01"
+          }
         ],
         "name": "Tân Cảng",
         "nameEn": "Tan Cang",
@@ -241,7 +271,10 @@
       "properties": {
         "id": "thao-dien",
         "codes": [
-          {"line": "line-1", "code": "L1-06"}
+          {
+            "line": "line-1",
+            "code": "L1-06"
+          }
         ],
         "name": "Thảo Điền",
         "nameEn": "Thao Dien",
@@ -295,7 +328,10 @@
       "properties": {
         "id": "an-phu",
         "codes": [
-          {"line": "line-1", "code": "L1-07"}
+          {
+            "line": "line-1",
+            "code": "L1-07"
+          }
         ],
         "name": "An Phú",
         "nameEn": "An Phu",
@@ -342,7 +378,10 @@
       "properties": {
         "id": "rach-chiec",
         "codes": [
-          {"line": "line-1", "code": "L1-08"}
+          {
+            "line": "line-1",
+            "code": "L1-08"
+          }
         ],
         "name": "Rạch Chiếc",
         "nameEn": "Rach Chiec",
@@ -396,7 +435,10 @@
       "properties": {
         "id": "phuoc-long",
         "codes": [
-          {"line": "line-1", "code": "L1-09"}
+          {
+            "line": "line-1",
+            "code": "L1-09"
+          }
         ],
         "name": "Phước Long",
         "nameEn": "Phuoc Long",
@@ -457,7 +499,10 @@
       "properties": {
         "id": "binh-thai",
         "codes": [
-          {"line": "line-1", "code": "L1-10"}
+          {
+            "line": "line-1",
+            "code": "L1-10"
+          }
         ],
         "name": "Bình Thái",
         "nameEn": "Binh Thai",
@@ -489,7 +534,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [106.76380556, 10.83250]
+        "coordinates": [106.76380556, 10.8325]
       }
     },
     {
@@ -497,7 +542,10 @@
       "properties": {
         "id": "thu-duc",
         "codes": [
-          {"line": "line-1", "code": "L1-11"}
+          {
+            "line": "line-1",
+            "code": "L1-11"
+          }
         ],
         "name": "Thủ Đức",
         "nameEn": "Thu Duc",
@@ -537,7 +585,10 @@
       "properties": {
         "id": "khu-cong-nghe-cao",
         "codes": [
-          {"line": "line-1", "code": "L1-12"}
+          {
+            "line": "line-1",
+            "code": "L1-12"
+          }
         ],
         "name": "Khu Công nghệ cao",
         "nameEn": "High Tech Park",
@@ -584,7 +635,10 @@
       "properties": {
         "id": "dai-hoc-quoc-gia",
         "codes": [
-          {"line": "line-1", "code": "L1-13"}
+          {
+            "line": "line-1",
+            "code": "L1-13"
+          }
         ],
         "name": "Đại học Quốc gia",
         "nameEn": "National University",
@@ -638,7 +692,10 @@
       "properties": {
         "id": "suoi-tien",
         "codes": [
-          {"line": "line-1", "code": "L1-14"}
+          {
+            "line": "line-1",
+            "code": "L1-14"
+          }
         ],
         "name": "Bến xe Suối Tiên",
         "nameEn": "Suoi Tien Terminal",

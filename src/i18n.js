@@ -14,7 +14,11 @@ export const translations = {
     legendLine1: 'Tuyến 1 (vận hành)',
     legendStation: 'Ga metro',
     legendExit: 'Lối ra',
-    
+
+    // Region selector
+    regionTphcm: 'TP.HCM',
+    regionPhuQuoc: 'Phú Quốc',
+
     // Search
     searchPlaceholder: 'Tìm ga...',
     searchCancel: 'Hủy',
@@ -47,7 +51,11 @@ export const translations = {
     legendLine1: 'Line 1 (Operational)',
     legendStation: 'Metro station',
     legendExit: 'Exit',
-    
+
+    // Region selector
+    regionTphcm: 'Ho Chi Minh City',
+    regionPhuQuoc: 'Phu Quoc Special Zone',
+
     // Search
     searchPlaceholder: 'Search stations...',
     searchCancel: 'Cancel',

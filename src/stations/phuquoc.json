@@ -1,0 +1,131 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pq-s0-sanbay",
+        "codes": [
+          {
+            "line": "phuquoc-lrt",
+            "code": "PQ-S0"
+          }
+        ],
+        "name": "Ga Sân bay Phú Quốc",
+        "nameEn": "Phu Quoc International Airport Station",
+        "lines": ["phuquoc-lrt"],
+        "status": "construction",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.99802631731268, 10.161778325992342]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pq-s1",
+        "codes": [
+          {
+            "line": "phuquoc-lrt",
+            "code": "PQ-S1"
+          }
+        ],
+        "name": "Ga S1",
+        "nameEn": "Station S1",
+        "lines": ["phuquoc-lrt"],
+        "status": "construction",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.97912521785405, 10.152690907987177]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pq-s2",
+        "codes": [
+          {
+            "line": "phuquoc-lrt",
+            "code": "PQ-S2"
+          }
+        ],
+        "name": "Ga S2",
+        "nameEn": "Station S2",
+        "lines": ["phuquoc-lrt"],
+        "status": "construction",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.98684726334177, 10.139187661709125]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pq-s3",
+        "codes": [
+          {
+            "line": "phuquoc-lrt",
+            "code": "PQ-S3"
+          }
+        ],
+        "name": "Ga S3",
+        "nameEn": "Station S3",
+        "lines": ["phuquoc-lrt"],
+        "status": "construction",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.99436746149682, 10.097772284389597]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pq-s4",
+        "codes": [
+          {
+            "line": "phuquoc-lrt",
+            "code": "PQ-S4"
+          }
+        ],
+        "name": "Ga S4",
+        "nameEn": "Station S4",
+        "lines": ["phuquoc-lrt"],
+        "status": "construction",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [104.0059516869926, 10.05509946929031]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pq-apec",
+        "codes": [
+          {
+            "line": "phuquoc-lrt",
+            "code": "PQ-APEC"
+          }
+        ],
+        "name": "Ga ngầm Trung tâm Hội nghị APEC",
+        "nameEn": "APEC Conference Center Underground Station",
+        "lines": ["phuquoc-lrt"],
+        "status": "construction",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.99541897438922, 10.045161116626947]
+      }
+    }
+  ]
+}

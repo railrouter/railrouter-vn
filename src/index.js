@@ -2,8 +2,37 @@ import 'regenerator-runtime/runtime';
 import mapboxgl from 'mapbox-gl';
 import Fuse from 'fuse.js';
 import * as topojson from 'topojson-client';
-import railData from './vn-rail.geo.json';
-import stationsData from './stations.json';
+import railTphcm from './lines/tphcm.geo.json';
+import railDongNai from './lines/dongnai.geo.json';
+import railPhuQuoc from './lines/phuquoc.geo.json';
+import stationsTphcm from './stations/tphcm.json';
+import stationsDongNai from './stations/dongnai.json';
+import stationsPhuQuoc from './stations/phuquoc.json';
+
+// Lines/stations are authored per-region (src/lines/*.geo.json, src/stations/*.json)
+// so each area can be edited independently as new data comes in; merged here into
+// single sources since the map always renders everything (region selector only
+// moves the camera, see regionBounds below).
+const railData = {
+  type: 'FeatureCollection',
+  features: [...railTphcm.features, ...railDongNai.features, ...railPhuQuoc.features]
+};
+// Tag each station with the region bucket used by #region-select (search is
+// filtered by this same tag — see currentRegion below). Đồng Nai stations are
+// tagged 'tphcm' too since there's no separate Đồng Nai preset/bucket: the
+// urban area is contiguous and grouped with TP.HCM in regionBounds already.
+const tagRegion = (features, region) => features.map((f) => ({
+  ...f,
+  properties: { ...f.properties, region }
+}));
+const stationsData = {
+  type: 'FeatureCollection',
+  features: [
+    ...tagRegion(stationsTphcm.features, 'tphcm'),
+    ...tagRegion(stationsDongNai.features, 'tphcm'),
+    ...tagRegion(stationsPhuQuoc.features, 'phuquoc')
+  ]
+};
 import hoangSaTopoJSON from './islands/hoang-sa.json';
 import truongSaTopoJSON from './islands/truong-sa.json';
 import islandsPointsData from './islands/vietnam-islands.geo.json';
@@ -12,6 +41,28 @@ import { getCurrentLanguage, setLanguage, t } from './i18n.js';
 const $ = (id) => document.getElementById(id);
 let stationsDataGlobal = null;
 let fuse = null;
+let currentRegion = 'tphcm'; // matches #region-select's default/first option
+
+// Stations within the region currently selected in #region-select.
+function getRegionStations() {
+  if (!stationsDataGlobal) return [];
+  return stationsDataGlobal.features.filter((f) => f.properties.region === currentRegion);
+}
+
+// (Re)builds the search index over the current region + language, so search
+// stays in sync whenever either changes.
+function rebuildFuse() {
+  if (!stationsDataGlobal) return;
+  const lang = getCurrentLanguage();
+  const keys = lang === 'en'
+    ? ['properties.nameEn', 'properties.name', 'properties.code']
+    : ['properties.name', 'properties.nameEn', 'properties.code'];
+  fuse = new Fuse(getRegionStations(), {
+    keys,
+    threshold: 0.3,
+    includeScore: true
+  });
+}
 const $home = $('home');
 const $btnCloseHome = $('btn-close-home');
 const $station = $('station');
@@ -21,6 +72,18 @@ const $searchCancel = $('search-cancel');
 const $searchResults = $('search-results');
 const $langToggle = $('lang-toggle');
 const $langText = $('lang-text');
+const $regionSelect = $('region-select');
+
+// Camera presets for the region selector. Bounds are approximate framing
+// boxes (not data filters) — switching regions just reframes the viewport;
+// rail/station layers always contain the full dataset.
+const regionBounds = {
+  // TP.HCM mới (HCMC cũ + Bình Dương + Bà Rịa - Vũng Tàu) đồng thời đóng vai trò
+  // "vùng đô thị TP.HCM" luôn, vì đô thị đã liền mạch sang Đồng Nai — không cần
+  // preset camera riêng cho Đồng Nai, nó vẫn nằm trong khung nhìn này.
+  tphcm: [[106.3, 10.2], [107.6, 11.6]],
+  phuquoc: [[103.85, 9.95], [104.1, 10.35]], // Phú Quốc
+};
 
 // Close home panel
 $btnCloseHome.onclick = (e) => {
@@ -110,19 +173,9 @@ $langToggle.onclick = () => {
   setLanguage(newLang);
   updateTranslations();
   
-  // Re-initialize Fuse.js with new language
-  if (stationsDataGlobal) {
-    const searchKeys = newLang === 'en' 
-      ? ['properties.nameEn', 'properties.name']
-      : ['properties.name', 'properties.nameEn'];
-    
-    fuse = new Fuse(stationsDataGlobal.features, {
-      keys: searchKeys,
-      threshold: 0.3,
-      includeScore: true
-    });
-  }
-  
+  // Re-initialize Fuse.js with new language (still scoped to currentRegion)
+  rebuildFuse();
+
   // Refresh search results if search panel is open
   if ($search && !$search.hidden) {
     const query = $searchField.value.trim();
@@ -194,6 +247,27 @@ map.addControl(
   'bottom-right'
 );
 
+// Region selector: reframe the camera to the chosen region's bounds, and
+// scope search (showAllStations/fuse) to that region too.
+$regionSelect.onchange = (e) => {
+  const bounds = regionBounds[e.target.value];
+  if (bounds) {
+    map.fitBounds(bounds, { padding: 40, duration: 1000 });
+  }
+
+  currentRegion = e.target.value;
+  rebuildFuse();
+
+  if ($search && !$search.hidden) {
+    const query = $searchField.value.trim();
+    if (!query) {
+      showAllStations();
+    } else {
+      $searchField.oninput({ target: $searchField });
+    }
+  }
+};
+
 console.log('RailRouter VN initialized');
 
 // Load rail data
@@ -201,13 +275,9 @@ map.on('load', async () => {
   try {
     // Store globally for search
     stationsDataGlobal = stationsData;
-    
-    // Initialize Fuse.js for search
-    fuse = new Fuse(stationsData.features, {
-      keys: ['properties.name', 'properties.nameEn', 'properties.code'],
-      threshold: 0.3,
-      includeScore: true
-    });
+
+    // Initialize Fuse.js for search, scoped to currentRegion
+    rebuildFuse();
 
     // Add rail lines source
     map.addSource('rail-lines', {
@@ -279,8 +349,8 @@ map.on('load', async () => {
       type: 'line',
       source: 'rail-lines',
 
-      // Chỉ lọc MRT thôi
-      filter: ['==', ['get', 'type'], 'mrt'],
+      // Lọc MRT + LRT (LRT cần để hiện tuyến Phú Quốc, Line 11...)
+      filter: ['in', ['get', 'type'], ['literal', ['mrt', 'lrt']]],
 
       paint: {
         // operational + construction dùng màu thật
@@ -700,21 +770,24 @@ function showStationInfo(station, stationFeature) {
           'line-2': '#A05FA0',
           'line-3a': '#E8692A',
           'line-4': '#1B9E77',
-          'bt-cangio': '#808080'
+          'bt-cangio': '#808080',
+          'phuquoc-lrt': '#FF6B35'
         };
         const lineNamesVi = {
           'line-1': 'Tuyến 1 - Bến Thành - Suối Tiên',
           'line-2': 'Tuyến 2',
           'line-3a': 'Tuyến 3A',
           'line-4': 'Tuyến 4',
-          'bt-cangio': 'Bến Thành - Cần Giờ'
+          'bt-cangio': 'Bến Thành - Cần Giờ',
+          'phuquoc-lrt': 'LRT Phú Quốc'
         };
         const lineNamesEn = {
           'line-1': 'Line 1 - Ben Thanh - Suoi Tien',
           'line-2': 'Line 2',
           'line-3a': 'Line 3A',
           'line-4': 'Line 4',
-          'bt-cangio': 'Ben Thanh - Can Gio'
+          'bt-cangio': 'Ben Thanh - Can Gio',
+          'phuquoc-lrt': 'Phu Quoc LRT'
         };
         const lineName = lang === 'en' ? lineNamesEn[lineId] : lineNamesVi[lineId];
         return `<span class="line-badge" style="background-color: ${lineColors[lineId]} !important; padding: 6px 10px; border-radius: 4px; color: white !important; font-size: 12px; font-weight: 600; display: inline-block; margin: 2px;">${lineName}</span>`;
@@ -842,21 +915,22 @@ function showAllStations() {
     'line-2': '#A05FA0',
     'line-3a': '#E8692A',
     'line-4': '#1B9E77',
-    'bt-cangio': '#808080'
+    'bt-cangio': '#808080',
+    'phuquoc-lrt': '#FF6B35'
   };
   
   const lang = getCurrentLanguage();
-  $searchResults.innerHTML = stationsDataGlobal.features.map(feature => {
+  $searchResults.innerHTML = getRegionStations().map(feature => {
     const station = feature.properties;
     const codes = station.codes || [];
     const displayName = lang === 'en' ? (station.nameEn || station.name) : station.name;
-    
+
     // Generate code badges for all codes
     const codeBadges = codes.map(codeObj => {
       const color = lineColors[codeObj.line] || '#808080';
       return `<div class="station-code-badge" style="background-color: ${color}">${codeObj.code}</div>`;
     }).join('');
-    
+
     return `
       <li onclick="selectStation('${station.id}')">
         <div class="station-info">
@@ -900,7 +974,8 @@ $searchField.oninput = (e) => {
     'line-2': '#A05FA0',
     'line-3a': '#E8692A',
     'line-4': '#1B9E77',
-    'bt-cangio': '#808080'
+    'bt-cangio': '#808080',
+    'phuquoc-lrt': '#FF6B35'
   };
   
   const lang = getCurrentLanguage();

@@ -6,7 +6,9 @@
 <title>RailRouter VN – Khám phá Metro TPHCM – Bản đồ tàu điện TP.HCM</title>
 <link rel="stylesheet" type="text/css" href="/src/index.css" />
 <meta name="description" content="Khám phá tuyến Metro tại TP. Hồ Chí Minh" />
-<link rel="preload" as="fetch" href="/src/vn-rail.geo.json" crossorigin="anonymous" />
+<link rel="preload" as="fetch" href="/src/lines/tphcm.geo.json" crossorigin="anonymous" />
+<link rel="preload" as="fetch" href="/src/lines/dongnai.geo.json" crossorigin="anonymous" />
+<link rel="preload" as="fetch" href="/src/lines/phuquoc.geo.json" crossorigin="anonymous" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="RailRouter VN" />
 <meta name="twitter:url" property="og:url" content="https://railrouter-vn.netlify.app" />
@@ -24,6 +26,10 @@
 <button id="lang-toggle" class="map-control-btn" title="Language / Ngôn ngữ" style="position: fixed; top: 10px; right: 10px; z-index: 10; background: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer; box-shadow: 0 0 0 2px rgba(0,0,0,.1); font-weight: 600; font-size: 14px;">
   <span id="lang-text">EN</span>
 </button>
+<select id="region-select" title="Khu vực / Region" style="position: fixed; top: 10px; left: 70px; z-index: 10; background: white; border: none; border-radius: 4px; padding: 8px 10px; cursor: pointer; box-shadow: 0 0 0 2px rgba(0,0,0,.1); font-weight: 600; font-size: 14px; max-width: 220px;">
+  <option value="tphcm" data-i18n="regionTphcm">TP.HCM</option>
+  <option value="phuquoc" data-i18n="regionPhuQuoc">Phú Quốc</option>
+</select>
 <div id="home" class="sheet">
   <button type="button" class="sheet-close"></button>
   <h1 data-i18n="homeTitle">RailRouter VN</h1>

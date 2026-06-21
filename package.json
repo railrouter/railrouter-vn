@@ -13,10 +13,13 @@
   ],
   "author": "RailRouter VN",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "vite --port 4567",
     "build": "vite build",
-    "preview": "vite preview --port 4567"
+    "preview": "vite preview --port 4567",
+    "prettier": "prettier --write \"src/**/*.json\" \"*.json\"",
+    "format": "node scripts/fix-coords.cjs && npm run prettier"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-language": "~1.0.0",
@@ -31,6 +34,7 @@
     "workbox-strategies": "~6.5.4"
   },
   "devDependencies": {
+    "prettier": "^3.8.4",
     "vite": "^5.0.0"
   },
   "browserslist": [

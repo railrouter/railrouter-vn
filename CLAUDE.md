@@ -15,18 +15,23 @@ npm install        # install deps
 npm start           # vite dev server on :4567
 npm run build       # vite build -> dist/
 npm run preview     # preview the production build on :4567
+npm run prettier    # prettier --write on src/**/*.json + root *.json (formatting only)
+npm run format      # auto-fix [lat,lng]-order (Google) coordinate pairs back to GeoJSON [lon,lat], then npm run prettier
 ```
 
-There is no lint or test setup in this repo.
+There is no lint or test setup in this repo. `npm run prettier` only covers JSON data files (`.prettierrc.json`/`.prettierignore` at the repo root) — it keeps GeoJSON/TopoJSON coordinate pairs like `[lon, lat]` on one line instead of `JSON.stringify(..., null, 2)`'s one-number-per-line output. JS/HTML/CSS are not Prettier-formatted; follow the existing inline-string-template style there instead.
+
+**Pasting coordinates from Google Maps** (which shows `lat, lng`, the opposite of GeoJSON's `[lon, lat]`): paste them in as-is — don't hand-swap — then run `npm run format`. `scripts/fix-coords.cjs` (invoked by that script, before `npm run prettier`) walks every coordinate pair in `lines/*.geo.json`, `stations/*.json`, and `islands/vietnam-islands.geo.json`, and swaps any pair that looks like `[lat, lon]` back to `[lon, lat]`. This is safe specifically for Vietnam because latitude (~5–24) and longitude (~100–118) never overlap, so the correct order can be inferred from magnitude alone — no risk of misreading an already-correct pair. A pair outside both ranges is left untouched with a warning (probably a typo — check it by hand). Deliberately excludes `islands/hoang-sa.json`/`islands/truong-sa.json`: those are TopoJSON arc delta-encoded integers, not real lon/lat, and running this script on them would corrupt the data.
 
 ## Architecture
 
 Single-page vanilla JS app (no framework), bundled by Vite. Entry point is `index.html` → `src/index.js`.
 
 - **Map rendering**: Mapbox GL JS (`mapboxgl.accessToken` is hardcoded in `src/index.js`, reused from the SG project). Map is centered on HCMC but `maxBounds` is expanded to cover all of Vietnam so the Hoàng Sa/Trường Sa island layers are reachable.
-- **Data files** (`src/`):
-  - `vn-rail.geo.json` — GeoJSON `LineString` features for metro lines. Properties: `id`, `line`, `name`, `nameEn`, `color`, `status` (`operational`/`construction`/`planned`), `type` (currently only `mrt` is rendered — see the `rail-lines-layer` filter), `width`.
-  - `stations.json` — GeoJSON `Point` features per station. Properties include `id`, `name`/`nameEn`, `codes` (array of `{line, code}`), `lines`, `status`, and `exits` (array of `{number, name, description, location, status}`). Station building footprints and the exits layer are both derived from this file at runtime in `src/index.js` (not pre-baked).
+- **Data files** (`src/`), split per region so each area's data can grow independently:
+  - `lines/{tphcm,dongnai,phuquoc}.geo.json` — GeoJSON `LineString` features for rail lines, one FeatureCollection per region. Properties: `id`, `name`, `nameEn`, `color`, `status` (`operational`/`construction`/`planned`), `type` (`mrt`/`lrt` are rendered — see the `rail-lines-layer` filter; `hsr`/`rail` are not), `width`. A line is filed under whichever region it primarily runs through/toward (e.g. `thuthiem-longthanh` and `line-1-segment-2b` are filed under `dongnai` since they head to Long Thành/Biên Hòa, even though they originate in HCMC).
+  - `stations/{tphcm,dongnai,phuquoc}.json` — GeoJSON `Point` features per station, one FeatureCollection per region (an empty-features file is a valid placeholder, e.g. `dongnai.json` until stations are added there). Properties include `id`, `name`/`nameEn`, `codes` (array of `{line, code}`), `lines`, `status`, and `exits` (array of `{number, name, description, location, status}`). Station building footprints and the exits layer are both derived from this data at runtime in `src/index.js` (not pre-baked).
+  - `src/index.js` imports all six files and concatenates their `features` into single in-memory `railData`/`stationsData` FeatureCollections — the map always renders the full combined dataset; the region selector (see below) only moves the camera. When adding a new region, create both a `lines/<region>.geo.json` and `stations/<region>.json` file (even if stations starts empty) and add the import + spread in `src/index.js`.
   - `islands/hoang-sa.json` and `islands/truong-sa.json` — TopoJSON (GADM) polygons for the Paracel and Spratly islands, converted to GeoJSON at runtime via `topojson-client`. `islands/vietnam-islands.geo.json` — point features for smaller islands not covered by the GADM polygons. These render Vietnam's claimed territorial islands on the map; treat this as deliberate, not incidental, when editing map content.
   - Line/station colors and Vietnamese line names are duplicated as inline lookup objects inside `src/index.js` (`lineColors`, `lineNamesVi`/`lineNamesEn`) rather than read from the GeoJSON — keep these in sync if you add a line.
 - **i18n** (`src/i18n.js`): plain object-based translation table (`vi`/`en`), no library. Current language is read from `localStorage['railrouter-lang']`. `t(key)` looks up the active language with a `vi` fallback. `updateTranslations()` in `src/index.js` re-applies `data-i18n`/`data-i18n-html` attributes in the DOM and calls `updateMapLabels()` to switch Mapbox `text-field` expressions between `name`/`nameEn` for stations, islands and archipelago labels. When adding UI text, add it to both language blocks in `translations` and reference it with `data-i18n`/`data-i18n-html` in `index.html` or via `t()` in JS.
@@ -37,7 +42,13 @@ Single-page vanilla JS app (no framework), bundled by Vite. Entry point is `inde
 
 ## Working with map/route data
 
-Most historical commits are small, incremental edits to line geometry or station data (e.g. "Update line 1", "Update line 2"). When editing `vn-rail.geo.json` or `stations.json`, keep `name`/`nameEn` pairs and `codes`/`lines` consistent across both files for the same station/line `id`, since the app cross-references them by `id` rather than by array position.
+Most historical commits are small, incremental edits to line geometry or station data (e.g. "Update line 1", "Update line 2"). When editing a file under `lines/` or `stations/`, keep `name`/`nameEn` pairs and `codes`/`lines` consistent across the matching line/station files for the same `id`, since the app cross-references them by `id` rather than by array position — and a station's `lines` entries must point at a line `id` that actually exists in one of the `lines/*.geo.json` files.
+
+- `phuquoc-lrt` (LRT sân bay Phú Quốc – Trung tâm Hội nghị APEC, in `lines/phuquoc.geo.json`) has a `geometryConfidence: "approximate"` property — its coordinates were interpolated from public reporting (ĐT.975 corridor, station Km markers), not an official survey/GIS file. Verify against an authoritative source before treating it as accurate, and update station names once the unnamed S2/S3/S4-S5 stations are officially announced.
+
+## Region selector
+
+`#region-select` (top-left, next to the logo) lets the user reframe the camera to one of two presets defined in `regionBounds` in `src/index.js`: `tphcm` (HCMC + sáp nhập Bình Dương + Bà Rịa-Vũng Tàu — its bounds also cover Đồng Nai, since the urban area is contiguous and there's no separate "Đồng Nai"/"vùng đô thị" preset) and `phuquoc`. Selecting one calls `map.fitBounds()` — it's camera-only, not a data filter; all lines/stations stay loaded regardless of which preset is selected (including the `dongnai` line/station data files — they just don't get their own camera shortcut). The bounds are rough framing boxes, not administrative-boundary-accurate polygons.
 
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence

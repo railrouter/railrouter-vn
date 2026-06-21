@@ -50,7 +50,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [111.6167, 16.0500]
+        "coordinates": [111.6167, 16.05]
       }
     },
     {
@@ -94,7 +94,7 @@
     },
     {
       "type": "Feature",
-        "properties": {
+      "properties": {
         "name": "Đảo Sinh Tồn",
         "nameEn": "Sin Cowe Island",
         "group": "Trường Sa",
@@ -128,7 +128,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [113.6500, 8.9500]
+        "coordinates": [113.65, 8.95]
       }
     },
     {
@@ -154,7 +154,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [112.4000, 16.9667]
+        "coordinates": [112.4, 16.9667]
       }
     },
     {
@@ -167,7 +167,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [112.3500, 16.8833]
+        "coordinates": [112.35, 16.8833]
       }
     },
     {
@@ -180,7 +180,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [112.7167, 16.4000]
+        "coordinates": [112.7167, 16.4]
       }
     },
     {
@@ -206,7 +206,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [112.4500, 16.5500]
+        "coordinates": [112.45, 16.55]
       }
     },
     {
@@ -219,7 +219,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [112.6000, 16.5000]
+        "coordinates": [112.6, 16.5]
       }
     },
     {
@@ -271,7 +271,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [114.2833, 11.0500]
+        "coordinates": [114.2833, 11.05]
       }
     },
     {
@@ -284,7 +284,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [114.2167, 10.7500]
+        "coordinates": [114.2167, 10.75]
       }
     },
     {
@@ -297,7 +297,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [114.5000, 11.0833]
+        "coordinates": [114.5, 11.0833]
       }
     },
     {
@@ -375,7 +375,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [114.2500, 8.6667]
+        "coordinates": [114.25, 8.6667]
       }
     },
     {
@@ -388,7 +388,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [114.2500, 9.0000]
+        "coordinates": [114.25, 9.0]
       }
     }
   ]
