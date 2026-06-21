@@ -247,6 +247,26 @@ map.addControl(
   'bottom-right'
 );
 
+// Browsers can discard a background tab's WebGL context to free GPU memory
+// after it's been hidden/idle for a while; the canvas comes back blank when
+// the tab is revisited. mapbox-gl recovers the GL state on its own once the
+// context is restored, but the canvas still needs a resize + repaint nudge —
+// without it the map can stay blank until a manual page reload.
+map.getCanvas().addEventListener('webglcontextlost', () => {
+  console.warn('Mapbox GL: WebGL context lost (tab likely backgrounded)');
+});
+map.getCanvas().addEventListener('webglcontextrestored', () => {
+  console.warn('Mapbox GL: WebGL context restored, repainting');
+  map.resize();
+  map.triggerRepaint();
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    map.resize();
+    map.triggerRepaint();
+  }
+});
+
 // Region selector: reframe the camera to the chosen region's bounds, and
 // scope search (showAllStations/fuse) to that region too.
 $regionSelect.onchange = (e) => {

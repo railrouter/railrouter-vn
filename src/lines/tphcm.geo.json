@@ -540,7 +540,7 @@
         "nameEn": "Ben Thanh - Can Gio",
         "color": "#D627F5",
         "status": "construction",
-        "type": "mrt",
+        "type": "hsr",
         "width": 4
       },
       "geometry": {
@@ -582,6 +582,32 @@
           [106.90025883682021, 10.403182436919488],
           [106.91831374242925, 10.391897256448681],
           [106.9307520392431, 10.393540130932417]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "binhduong-line-2",
+        "name": "Tuyến số 2 - Thủ Dầu Một - Tao Đàn",
+        "nameEn": "Binh Duong Line 2 - Thu Dau Mot - Tao Dan",
+        "color": "#9B59B6",
+        "status": "planned",
+        "type": "mrt",
+        "width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.6667, 10.9833],
+          [106.665, 10.965],
+          [106.7, 10.93],
+          [106.702, 10.91],
+          [106.7, 10.89],
+          [106.71, 10.85],
+          [106.71, 10.82],
+          [106.7, 10.8],
+          [106.69, 10.776]
         ]
       }
     },
