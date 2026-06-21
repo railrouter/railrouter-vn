@@ -250,14 +250,35 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.72270895161785, 10.798500306366574]
+            "location": [106.72256776169371, 10.798518962870574]
           },
           {
-            "id": "exit-2",
-            "number": 2,
-            "name": "Lối ra 2",
-            "description": "Lối ra 2",
-            "location": [106.72268120159717, 10.799134236791964]
+            "id": "exit-2a",
+            "number": "2A",
+            "name": "Lối ra 2A",
+            "description": "Lối ra 2A",
+            "location": [106.72254882950331, 10.799127397900754]
+          },
+          {
+            "id": "exit-2b",
+            "number": "2B",
+            "name": "Lối ra 2B",
+            "description": "Lối ra 2B",
+            "location": [106.72300151852158, 10.799169923376208]
+          },
+          {
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.72267022371885, 10.798229631737756]
+          },
+          {
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.72299023232152, 10.798301141514685]
           }
         ]
       },
@@ -286,35 +307,42 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.73324389288018, 10.80068522876572]
+            "location": [106.73310721326457, 10.800420355456627]
           },
           {
-            "id": "exit-2",
-            "number": 2,
-            "name": "Lối ra 2",
-            "description": "Lối ra 2",
-            "location": [106.73325615289178, 10.800406722100492]
+            "id": "exit-2a",
+            "number": "2A",
+            "name": "Lối ra 2A",
+            "description": "Lối ra 2A",
+            "location": [106.73306032843331, 10.800726275893213]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.73383614728228, 10.7998754029949]
+            "id": "exit-2b",
+            "number": "2B",
+            "name": "Lối ra 2B",
+            "description": "Lối ra 2B",
+            "location": [106.73341341189457, 10.800677942540805]
           },
           {
-            "id": "exit-4",
-            "number": 4,
-            "name": "Lối ra 4",
-            "description": "Lối ra 4",
-            "location": [106.73303391572207, 10.799231931226553]
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.73374090523272, 10.799823525855661]
           },
           {
-            "id": "exit-5",
-            "number": 5,
-            "name": "Lối ra 5",
-            "description": "Lối ra 5",
-            "location": [106.73374703904858, 10.799290036397128]
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.73372639782302, 10.799287085821412]
+          },
+          {
+            "id": "exit-3c",
+            "number": "3C",
+            "name": "Lối ra 3C",
+            "description": "Lối ra 3C",
+            "location": [106.73317519843373, 10.799218998697695]
           }
         ]
       },
@@ -343,27 +371,27 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.74155516072362, 10.802184977243236]
+            "location": [106.7416877163417, 10.802056839602674]
           },
           {
             "id": "exit-2",
             "number": 2,
             "name": "Lối ra 2",
             "description": "Lối ra 2",
-            "location": [106.74185004789051, 10.802076486880134]
+            "location": [106.74157847140039, 10.802201623635094]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
             "location": [106.74226522574334, 10.801400541335013]
           },
           {
-            "id": "exit-4",
-            "number": 4,
-            "name": "Lối ra 4",
-            "description": "Lối ra 4",
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
             "location": [106.74219253903574, 10.80087295445482]
           }
         ]
@@ -393,35 +421,44 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.75499956373248, 10.808286777555303]
+            "location": [106.75490576992281, 10.808073080647615]
           },
           {
             "id": "exit-2",
             "number": 2,
             "name": "Lối ra 2",
             "description": "Lối ra 2",
-            "location": [106.75595927821013, 10.807838500248566]
+            "status": "closed",
+            "location": [106.75489725613136, 10.808258369055562]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.75579467096787, 10.807555494905241]
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "status": "closed",
+            "location": [106.7559661916099, 10.80785239191747]
           },
           {
-            "id": "exit-4",
-            "number": 4,
-            "name": "Lối ra 4",
-            "description": "Lối ra 4",
-            "location": [106.75619722482432, 10.807724273794168]
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.75617790660039, 10.807703313748005]
           },
           {
-            "id": "exit-5",
-            "number": 5,
-            "name": "Lối ra 5",
-            "description": "Lối ra 5",
-            "location": [106.7560360246324, 10.807415550014737]
+            "id": "exit-3c",
+            "number": "3C",
+            "name": "Lối ra 3C",
+            "description": "Lối ra 3C",
+            "location": [106.7560266274029, 10.807420560893757]
+          },
+          {
+            "id": "exit-3d",
+            "number": "3D",
+            "name": "Lối ra 3D",
+            "description": "Lối ra 3D",
+            "location": [106.75578491755167, 10.807555627253022]
           }
         ]
       },
@@ -450,42 +487,43 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.7580817678812, 10.821302708760815]
+            "location": [106.7579844760866, 10.820968450174924]
           },
           {
             "id": "exit-2",
             "number": 2,
             "name": "Lối ra 2",
             "description": "Lối ra 2",
-            "location": [106.75804931037307, 10.82042651967905]
+            "status": "closed",
+            "location": [106.75789654822162, 10.821074702763712]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.75864326335184, 10.820717431425111]
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.75895145445608, 10.821002252863194]
           },
           {
-            "id": "exit-4",
-            "number": 4,
-            "name": "Lối ra 4",
-            "description": "Lối ra 4",
-            "location": [106.75895269162217, 10.821013039856606]
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.75908653343399, 10.820967654474074]
           },
           {
-            "id": "exit-5",
-            "number": 5,
-            "name": "Lối ra 5",
-            "description": "Lối ra 5",
-            "location": [106.75897804807843, 10.82064961424253]
+            "id": "exit-3c",
+            "number": "3C",
+            "name": "Lối ra 3C",
+            "description": "Lối ra 3C",
+            "location": [106.75898496156509, 10.820641406464235]
           },
           {
-            "id": "exit-6",
-            "number": 6,
-            "name": "Lối ra 6",
-            "description": "Lối ra 6",
-            "location": [106.75910729180772, 10.820955334749286]
+            "id": "exit-3d",
+            "number": "3D",
+            "name": "Lối ra 3D",
+            "description": "Lối ra 3D",
+            "location": [106.75884294874483, 10.82069757518013]
           }
         ]
       },
@@ -514,21 +552,29 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.76371017625763, 10.832403064473024]
+            "location": [106.76358581532045, 10.832254673911986]
           },
           {
             "id": "exit-2",
             "number": 2,
             "name": "Lối ra 2",
             "description": "Lối ra 2",
-            "location": [106.76456214566706, 10.831990424738088]
+            "status": "closed",
+            "location": [106.76353757345908, 10.83234755719042]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.76475731077386, 10.831867211317304]
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.76455828046387, 10.831984801689206]
+          },
+          {
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.76475470990073, 10.831871474933726]
           }
         ]
       },
@@ -557,21 +603,35 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.77152119580582, 10.846181381727424]
+            "location": [106.77134316056616, 10.845987449617013]
           },
           {
-            "id": "exit-2",
-            "number": 2,
-            "name": "Lối ra 2",
-            "description": "Lối ra 2",
-            "location": [106.77209069042705, 10.84551357148785]
+            "id": "exit-2a",
+            "number": "2A",
+            "name": "Lối ra 2A",
+            "description": "Lối ra 2A",
+            "location": [106.77118336753352, 10.845969156861708]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.77224884989249, 10.84581371693153]
+            "id": "exit-2b",
+            "number": "2B",
+            "name": "Lối ra 2B",
+            "description": "Lối ra 2B",
+            "location": [106.7714241849128, 10.846402547127918]
+          },
+          {
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.77206268858133, 10.845503223692159]
+          },
+          {
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.77225477323026, 10.845821410539772]
           }
         ]
       },
@@ -600,28 +660,36 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.78857247808148, 10.858911666563714]
+            "location": [106.78837349811373, 10.858843858826338]
           },
           {
             "id": "exit-2",
             "number": 2,
             "name": "Lối ra 2",
             "description": "Lối ra 2",
-            "location": [106.7889916846617, 10.85843859816998]
+            "status": "closed",
+            "location": [106.78840468734738, 10.858969841592536]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.78875356892698, 10.858058965895129]
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.78893208877399, 10.858414583401993]
           },
           {
-            "id": "exit-4",
-            "number": 4,
-            "name": "Lối ra 4",
-            "description": "Lối ra 4",
-            "location": [106.78910138528693, 10.858258701111318]
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.7890732083494, 10.858263622040196]
+          },
+          {
+            "id": "exit-3c",
+            "number": "3C",
+            "name": "Lối ra 3C",
+            "description": "Lối ra 3C",
+            "location": [106.78874939015228, 10.858055422401817]
           }
         ]
       },
@@ -650,35 +718,35 @@
             "number": 1,
             "name": "Lối ra 1",
             "description": "Lối ra 1",
-            "location": [106.80090108411446, 10.866191806032957]
+            "location": [106.80067557987236, 10.866014669607276]
           },
           {
-            "id": "exit-2",
-            "number": 2,
-            "name": "Lối ra 2",
-            "description": "Lối ra 2",
-            "location": [106.8005884019824, 10.866251339424124]
+            "id": "exit-2a",
+            "number": "2A",
+            "name": "Lối ra 2A",
+            "description": "Lối ra 2A",
+            "location": [106.80058449570257, 10.866215825426645]
           },
           {
-            "id": "exit-3",
-            "number": 3,
-            "name": "Lối ra 3",
-            "description": "Lối ra 3",
-            "location": [106.80090659727392, 10.866441255848104]
+            "id": "exit-2b",
+            "number": "2B",
+            "name": "Lối ra 2B",
+            "description": "Lối ra 2B",
+            "location": [106.80090112088725, 10.866418044588556]
           },
           {
-            "id": "exit-4",
-            "number": 4,
-            "name": "Lối ra 4",
-            "description": "Lối ra 4",
-            "location": [106.80154594401075, 10.865657335926207]
+            "id": "exit-3a",
+            "number": "3A",
+            "name": "Lối ra 3A",
+            "description": "Lối ra 3A",
+            "location": [106.80154140183893, 10.865629715100894]
           },
           {
-            "id": "exit-5",
-            "number": 5,
-            "name": "Lối ra 5",
-            "description": "Lối ra 5",
-            "location": [106.80186775767389, 10.865828342780402]
+            "id": "exit-3b",
+            "number": "3B",
+            "name": "Lối ra 3B",
+            "description": "Lối ra 3B",
+            "location": [106.80183456513716, 10.86580844469264]
           }
         ]
       },
