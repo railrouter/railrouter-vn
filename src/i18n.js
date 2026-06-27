@@ -17,7 +17,15 @@ export const translations = {
 
     // Region selector
     regionTphcm: 'TP.HCM',
+    regionHaNoi: 'Hà Nội',
     regionPhuQuoc: 'Phú Quốc',
+    regionDaNang: 'Đà Nẵng',
+    regionCanTho: 'Cần Thơ',
+    regionHaiPhong: 'Hải Phòng',
+    regionHue: 'Huế',
+    regionKhanhHoa: 'Khánh Hòa',
+    regionQuangNinh: 'Quảng Ninh',
+    regionBacNinh: 'Bắc Ninh',
 
     // Search
     searchPlaceholder: 'Tìm ga...',
@@ -54,7 +62,15 @@ export const translations = {
 
     // Region selector
     regionTphcm: 'Ho Chi Minh City',
+    regionHaNoi: 'Hanoi',
     regionPhuQuoc: 'Phu Quoc Special Zone',
+    regionDaNang: 'Da Nang',
+    regionCanTho: 'Can Tho',
+    regionHaiPhong: 'Hai Phong',
+    regionHue: 'Hue',
+    regionKhanhHoa: 'Khanh Hoa',
+    regionQuangNinh: 'Quang Ninh',
+    regionBacNinh: 'Bac Ninh',
 
     // Search
     searchPlaceholder: 'Search stations...',

@@ -5,22 +5,55 @@ import * as topojson from 'topojson-client';
 import railTphcm from './lines/tphcm.geo.json';
 import railDongNai from './lines/dongnai.geo.json';
 import railPhuQuoc from './lines/phuquoc.geo.json';
+import railHaNoi from './lines/hanoi.geo.json';
+import railDaNang from './lines/danang.geo.json';
+import railCanTho from './lines/cantho.geo.json';
+import railHaiPhong from './lines/haiphong.geo.json';
+import railHue from './lines/hue.geo.json';
+import railKhanhHoa from './lines/khanhhoa.geo.json';
+import railQuangNinh from './lines/quangninh.geo.json';
+import railBacNinh from './lines/bacninh.geo.json';
 import stationsTphcm from './stations/tphcm.json';
 import stationsDongNai from './stations/dongnai.json';
 import stationsPhuQuoc from './stations/phuquoc.json';
+import stationsHaNoi from './stations/hanoi.json';
+import stationsDaNang from './stations/danang.json';
+import stationsCanTho from './stations/cantho.json';
+import stationsHaiPhong from './stations/haiphong.json';
+import stationsHue from './stations/hue.json';
+import stationsKhanhHoa from './stations/khanhhoa.json';
+import stationsQuangNinh from './stations/quangninh.json';
+import stationsBacNinh from './stations/bacninh.json';
 
 // Lines/stations are authored per-region (src/lines/*.geo.json, src/stations/*.json)
 // so each area can be edited independently as new data comes in; merged here into
 // single sources since the map always renders everything (region selector only
 // moves the camera, see regionBounds below).
+//
+// regionsConfig drives both the merge below and the #region-select dropdown:
+// order here is the fixed display order, and a region's <option> is only
+// rendered once its lines file has at least one feature (see buildRegionOptions).
+const regionsConfig = [
+  { key: 'tphcm', i18nKey: 'regionTphcm', rail: railTphcm, stations: stationsTphcm },
+  { key: 'hanoi', i18nKey: 'regionHaNoi', rail: railHaNoi, stations: stationsHaNoi },
+  { key: 'phuquoc', i18nKey: 'regionPhuQuoc', rail: railPhuQuoc, stations: stationsPhuQuoc },
+  { key: 'danang', i18nKey: 'regionDaNang', rail: railDaNang, stations: stationsDaNang },
+  { key: 'cantho', i18nKey: 'regionCanTho', rail: railCanTho, stations: stationsCanTho },
+  { key: 'haiphong', i18nKey: 'regionHaiPhong', rail: railHaiPhong, stations: stationsHaiPhong },
+  { key: 'hue', i18nKey: 'regionHue', rail: railHue, stations: stationsHue },
+  { key: 'khanhhoa', i18nKey: 'regionKhanhHoa', rail: railKhanhHoa, stations: stationsKhanhHoa },
+  { key: 'quangninh', i18nKey: 'regionQuangNinh', rail: railQuangNinh, stations: stationsQuangNinh },
+  { key: 'bacninh', i18nKey: 'regionBacNinh', rail: railBacNinh, stations: stationsBacNinh }
+];
+// Đồng Nai has no preset/bucket of its own (its urban area is contiguous with
+// and grouped under 'tphcm' in regionBounds), so it's merged in separately
+// rather than through regionsConfig.
 const railData = {
   type: 'FeatureCollection',
-  features: [...railTphcm.features, ...railDongNai.features, ...railPhuQuoc.features]
+  features: regionsConfig.flatMap((r) => r.rail.features).concat(railDongNai.features)
 };
 // Tag each station with the region bucket used by #region-select (search is
-// filtered by this same tag — see currentRegion below). Đồng Nai stations are
-// tagged 'tphcm' too since there's no separate Đồng Nai preset/bucket: the
-// urban area is contiguous and grouped with TP.HCM in regionBounds already.
+// filtered by this same tag — see currentRegion below).
 const tagRegion = (features, region) => features.map((f) => ({
   ...f,
   properties: { ...f.properties, region }
@@ -28,9 +61,8 @@ const tagRegion = (features, region) => features.map((f) => ({
 const stationsData = {
   type: 'FeatureCollection',
   features: [
-    ...tagRegion(stationsTphcm.features, 'tphcm'),
-    ...tagRegion(stationsDongNai.features, 'tphcm'),
-    ...tagRegion(stationsPhuQuoc.features, 'phuquoc')
+    ...regionsConfig.flatMap((r) => tagRegion(r.stations.features, r.key)),
+    ...tagRegion(stationsDongNai.features, 'tphcm')
   ]
 };
 import hoangSaTopoJSON from './islands/hoang-sa.json';
@@ -82,8 +114,29 @@ const regionBounds = {
   // "vùng đô thị TP.HCM" luôn, vì đô thị đã liền mạch sang Đồng Nai — không cần
   // preset camera riêng cho Đồng Nai, nó vẫn nằm trong khung nhìn này.
   tphcm: [[106.3, 10.2], [107.6, 11.6]],
+  hanoi: [[105.3, 20.55], [106.1, 21.4]],
   phuquoc: [[103.85, 9.95], [104.1, 10.35]], // Phú Quốc
+  danang: [[107.3, 14.85], [108.5, 16.3]], // Đà Nẵng mới (Đà Nẵng cũ + Quảng Nam)
+  cantho: [[105.3, 9.0], [106.4, 10.2]], // Cần Thơ mới (Cần Thơ + Hậu Giang + Sóc Trăng)
+  haiphong: [[106.0, 20.5], [107.2, 21.2]], // Hải Phòng mới (Hải Phòng + Hải Dương)
+  hue: [[107.0, 15.9], [108.3, 16.8]],
+  khanhhoa: [[108.6, 11.2], [109.4, 12.8]], // Khánh Hòa mới (Khánh Hòa + Ninh Thuận)
+  quangninh: [[106.3, 20.6], [108.4, 21.6]],
+  bacninh: [[105.6, 20.9], [107.1, 21.8]], // Bắc Ninh mới (Bắc Ninh + Bắc Giang)
 };
+
+// Renders #region-select's <option> list in regionsConfig's fixed order, but
+// only includes a region once its lines file has at least one feature
+// (status operational/construction/planned — any feature counts since those
+// are the only statuses the data model supports). Text content is left for
+// updateTranslations() to fill in via the data-i18n attribute.
+function buildRegionOptions() {
+  $regionSelect.innerHTML = regionsConfig
+    .filter((r) => r.rail.features.length > 0)
+    .map((r) => `<option value="${r.key}" data-i18n="${r.i18nKey}"></option>`)
+    .join('');
+}
+buildRegionOptions();
 
 // Close home panel
 $btnCloseHome.onclick = (e) => {
