@@ -1,2 +1,2 @@
 # railrouter-vn
-A progressive web app that lets you explore HCMC Metro routes in HCMC, Viet Nam
+A progressive web app that lets you explore Metro routes in Viet Nam

@@ -16,6 +16,7 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 4567",
+    "prebuild": "npm run format",
     "build": "vite build",
     "preview": "vite preview --port 4567",
     "prettier": "prettier --write \"src/**/*.json\" \"*.json\"",
