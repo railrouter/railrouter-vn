@@ -422,8 +422,8 @@ map.on('load', async () => {
       type: 'line',
       source: 'rail-lines',
 
-      // Lọc MRT + LRT (LRT cần để hiện tuyến Phú Quốc, Line 11...)
-      filter: ['in', ['get', 'type'], ['literal', ['mrt', 'lrt']]],
+      // Lọc MRT + LRT (LRT cần để hiện tuyến Phú Quốc, Line 11...) + HSR (Bắc Nam, TPHCM-Cần Thơ)
+      filter: ['in', ['get', 'type'], ['literal', ['mrt', 'lrt', 'hsr']]],
 
       paint: {
         // operational + construction dùng màu thật
