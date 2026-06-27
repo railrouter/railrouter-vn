@@ -4,14 +4,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "phuquoc-lrt",
+        "id": "phuquoc-line-1",
         "name": "LRT Phú Quốc - Sân bay - Trung tâm Hội nghị APEC",
         "nameEn": "Phu Quoc LRT - Airport - APEC Conference Center",
         "color": "#FF6B35",
         "status": "construction",
         "type": "lrt",
-        "width": 4,
-        "geometryConfidence": "approximate - dựng từ thông tin báo chí công khai (lộ trình ĐT.975, các mốc Km ga), chưa đối chiếu bản vẽ chính thức"
+        "width": 3
       },
       "geometry": {
         "type": "LineString",

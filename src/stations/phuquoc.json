@@ -7,13 +7,13 @@
         "id": "pq-s0-sanbay",
         "codes": [
           {
-            "line": "phuquoc-lrt",
+            "line": "phuquoc-line-1",
             "code": "PQ-S0"
           }
         ],
         "name": "Ga Sân bay Phú Quốc",
         "nameEn": "Phu Quoc International Airport Station",
-        "lines": ["phuquoc-lrt"],
+        "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
       },
@@ -28,13 +28,13 @@
         "id": "pq-s1",
         "codes": [
           {
-            "line": "phuquoc-lrt",
+            "line": "phuquoc-line-1",
             "code": "PQ-S1"
           }
         ],
         "name": "Ga S1",
         "nameEn": "Station S1",
-        "lines": ["phuquoc-lrt"],
+        "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
       },
@@ -49,13 +49,13 @@
         "id": "pq-s2",
         "codes": [
           {
-            "line": "phuquoc-lrt",
+            "line": "phuquoc-line-1",
             "code": "PQ-S2"
           }
         ],
         "name": "Ga S2",
         "nameEn": "Station S2",
-        "lines": ["phuquoc-lrt"],
+        "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
       },
@@ -70,13 +70,13 @@
         "id": "pq-s3",
         "codes": [
           {
-            "line": "phuquoc-lrt",
+            "line": "phuquoc-line-1",
             "code": "PQ-S3"
           }
         ],
         "name": "Ga S3",
         "nameEn": "Station S3",
-        "lines": ["phuquoc-lrt"],
+        "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
       },
@@ -91,13 +91,13 @@
         "id": "pq-s4",
         "codes": [
           {
-            "line": "phuquoc-lrt",
+            "line": "phuquoc-line-1",
             "code": "PQ-S4"
           }
         ],
         "name": "Ga S4",
         "nameEn": "Station S4",
-        "lines": ["phuquoc-lrt"],
+        "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
       },
@@ -112,13 +112,13 @@
         "id": "pq-apec",
         "codes": [
           {
-            "line": "phuquoc-lrt",
+            "line": "phuquoc-line-1",
             "code": "PQ-APEC"
           }
         ],
         "name": "Ga ngầm Trung tâm Hội nghị APEC",
         "nameEn": "APEC Conference Center Underground Station",
-        "lines": ["phuquoc-lrt"],
+        "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
       },

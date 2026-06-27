@@ -1,4 +1,38 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cantho-station",
+        "codes": [
+          {
+            "line": "cantho-line-2",
+            "code": "CT-L2-01"
+          },
+          {
+            "line": "cantho-line-3",
+            "code": "CT-L3-02"
+          },
+          {
+            "line": "cantho-line-4",
+            "code": "CT-L4-01"
+          },
+          {
+            "line": "hsr-hcmc-cantho",
+            "code": "HSR-CT-12"
+          }
+        ],
+        "name": "Ga Cần Thơ",
+        "nameEn": "Can Tho Station",
+        "lines": ["cantho-line-2", "cantho-line-3", "cantho-line-4", "hsr-hcmc-cantho"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [105.79044318468256, 9.969623317742576]
+      }
+    }
+  ]
 }

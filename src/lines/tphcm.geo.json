@@ -11,7 +11,7 @@
         "color": "#0079B8",
         "status": "operational",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -68,7 +68,7 @@
         "color": "#0079B8",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -89,7 +89,7 @@
         "color": "#0079B8",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -135,7 +135,7 @@
         "status": "construction",
         "color": "#CC205F",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -160,7 +160,7 @@
         "status": "construction",
         "color": "#CC205F",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -189,7 +189,7 @@
         "status": "planned",
         "color": "#CC205F",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -211,7 +211,7 @@
         "color": "#FB7D37",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -227,7 +227,7 @@
         "color": "#97CF6F",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -243,7 +243,7 @@
         "color": "#E690BB",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -288,7 +288,7 @@
         "color": "#C58120",
         "status": "construction",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -331,7 +331,7 @@
         "color": "#C58120",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -383,7 +383,7 @@
         "color": "#18BDC1",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -399,7 +399,7 @@
         "color": "#6566A9",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -415,7 +415,7 @@
         "color": "#D36C97",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -431,7 +431,7 @@
         "color": "#6A926D",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -525,7 +525,7 @@
         "color": "#53C5E0",
         "status": "planned",
         "type": "lrt",
-        "width": 4
+        "width": 3
       },
       "geometry": {
         "type": "LineString",
@@ -540,8 +540,8 @@
         "nameEn": "Ben Thanh - Can Gio",
         "color": "#D627F5",
         "status": "construction",
-        "type": "mrt",
-        "width": 4
+        "type": "hsr",
+        "width": 8
       },
       "geometry": {
         "type": "LineString",
@@ -594,7 +594,7 @@
         "color": "#9B59B6",
         "status": "construction",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -640,7 +640,7 @@
         "color": "#00A8E8",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -700,7 +700,7 @@
         "color": "#1E90FF",
         "status": "construction",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -747,7 +747,7 @@
         "color": "#1E90FF",
         "status": "planned",
         "type": "mrt",
-        "width": 4
+        "width": 5
       },
       "geometry": {
         "type": "LineString",
@@ -802,7 +802,7 @@
         "color": "#8B0000",
         "status": "planned",
         "type": "hsr",
-        "width": 12
+        "width": 8
       },
       "geometry": {
         "type": "LineString",
@@ -812,13 +812,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "hsr-cantho",
+        "id": "hsr-hcmc-cantho",
         "name": "HSR TPHCM - Cần Thơ",
         "nameEn": "HSR HCMC - Can Tho",
         "color": "#8B0000",
         "status": "planned",
         "type": "hsr",
-        "width": 12
+        "width": 8
       },
       "geometry": {
         "type": "LineString",
