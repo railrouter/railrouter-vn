@@ -4,15 +4,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "pq-s0-sanbay",
+        "id": "pq-s0",
         "codes": [
           {
             "line": "phuquoc-line-1",
             "code": "PQ-S0"
           }
         ],
-        "name": "Ga Sân bay Phú Quốc",
-        "nameEn": "Phu Quoc International Airport Station",
+        "name": "Ga Tây Bắc",
+        "nameEn": "Tay Bac Station",
         "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
@@ -32,8 +32,8 @@
             "code": "PQ-S1"
           }
         ],
-        "name": "Ga S1",
-        "nameEn": "Station S1",
+        "name": "Ga Hà Nội",
+        "nameEn": "Ha Noi Station",
         "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
@@ -53,8 +53,8 @@
             "code": "PQ-S2"
           }
         ],
-        "name": "Ga S2",
-        "nameEn": "Station S2",
+        "name": "Ga Huế",
+        "nameEn": "Hue Station",
         "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
@@ -74,8 +74,8 @@
             "code": "PQ-S3"
           }
         ],
-        "name": "Ga S3",
-        "nameEn": "Station S3",
+        "name": "Ga Tây Nguyên",
+        "nameEn": "Tay Nguyen Station",
         "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
@@ -95,8 +95,8 @@
             "code": "PQ-S4"
           }
         ],
-        "name": "Ga S4",
-        "nameEn": "Station S4",
+        "name": "Ga Sài Gòn",
+        "nameEn": "Sai Gon Station",
         "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
@@ -109,15 +109,15 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "pq-apec",
+        "id": "pq-s5",
         "codes": [
           {
             "line": "phuquoc-line-1",
-            "code": "PQ-APEC"
+            "code": "PQ-S5"
           }
         ],
-        "name": "Ga ngầm Trung tâm Hội nghị APEC",
-        "nameEn": "APEC Conference Center Underground Station",
+        "name": "Ga Đảo Ngọc",
+        "nameEn": "Dao Ngoc Station",
         "lines": ["phuquoc-line-1"],
         "status": "construction",
         "exits": []
