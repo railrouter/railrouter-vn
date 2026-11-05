@@ -1,4 +1,110 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s0",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S0"
+          }
+        ],
+        "name": "Ga Tháp Chàm",
+        "nameEn": "Thap Cham Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.949972, 11.597194]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s1",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S1"
+          }
+        ],
+        "name": "Ga Tân Mỹ",
+        "nameEn": "Tan My Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.815226, 11.71951]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s2",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S2"
+          }
+        ],
+        "name": "Ga Sông Pha",
+        "nameEn": "Song Pha Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.698861, 11.825167]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s3",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S3"
+          }
+        ],
+        "name": "Ga Cô Bơ",
+        "nameEn": "Co Bo Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.652444, 11.824333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s4",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S4"
+          }
+        ],
+        "name": "Ga Eo Gió",
+        "nameEn": "Eo Gio Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.63775, 11.839611]
+      }
+    }
+  ]
 }
