@@ -26,6 +26,7 @@ export const translations = {
     regionKhanhHoa: 'Khánh Hòa',
     regionQuangNinh: 'Quảng Ninh',
     regionBacNinh: 'Bắc Ninh',
+    regionDaLat: 'Đà Lạt',
 
     // Search
     searchPlaceholder: 'Tìm ga...',
@@ -71,6 +72,7 @@ export const translations = {
     regionKhanhHoa: 'Khanh Hoa',
     regionQuangNinh: 'Quang Ninh',
     regionBacNinh: 'Bac Ninh',
+    regionDaLat: 'Da Lat',
 
     // Search
     searchPlaceholder: 'Search stations...',
