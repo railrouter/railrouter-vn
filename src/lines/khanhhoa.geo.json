@@ -1,4 +1,28 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dalat-thapcham-segment-1",
+        "line": "dalat-thapcham",
+        "name": "Đường sắt Đà Lạt - Tháp Chàm (đoạn Tháp Chàm - Eo Gió)",
+        "nameEn": "Da Lat - Thap Cham Railway (Thap Cham - Eo Gio section)",
+        "color": "#8B4513",
+        "status": "planned",
+        "type": "rail",
+        "width": 3
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [108.949972, 11.597194],
+          [108.815226, 11.71951],
+          [108.698861, 11.825167],
+          [108.652444, 11.824333],
+          [108.63775, 11.839611]
+        ]
+      }
+    }
+  ]
 }

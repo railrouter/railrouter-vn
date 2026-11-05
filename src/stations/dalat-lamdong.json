@@ -1,4 +1,135 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s5",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S5"
+          }
+        ],
+        "name": "Ga Đơn Dương",
+        "nameEn": "Don Duong Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.595833, 11.8415]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s6",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S6"
+          }
+        ],
+        "name": "Ga Trạm Hành",
+        "nameEn": "Tram Hanh Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.565278, 11.858722]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s7",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S7"
+          }
+        ],
+        "name": "Ga Cầu Đất",
+        "nameEn": "Cau Dat Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.548389, 11.887806]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s8",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S8"
+          }
+        ],
+        "name": "Ga Đạ Thọ",
+        "nameEn": "Da Tho Station",
+        "lines": ["dalat-thapcham"],
+        "status": "planned",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.532389, 11.930028]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s9",
+        "codes": [
+          {
+            "line": "dalat-thapcham",
+            "code": "DT-S9"
+          },
+          {
+            "line": "dalat-tram-mat",
+            "code": "DTM-01"
+          }
+        ],
+        "name": "Ga Trại Mát",
+        "nameEn": "Trai Mat Station",
+        "lines": ["dalat-thapcham", "dalat-tram-mat"],
+        "status": "operational",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.501, 11.946306]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dt-s10",
+        "codes": [
+          {
+            "line": "dalat-tram-mat",
+            "code": "DTM-02"
+          }
+        ],
+        "name": "Ga Đà Lạt",
+        "nameEn": "Da Lat Station",
+        "lines": ["dalat-tram-mat"],
+        "status": "operational",
+        "exits": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.454472, 11.949917]
+      }
+    }
+  ]
 }

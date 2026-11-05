@@ -133,7 +133,11 @@ const regionBounds = {
   khanhhoa: [[108.6, 11.2], [109.4, 12.8]], // Khánh Hòa mới (Khánh Hòa + Ninh Thuận)
   quangninh: [[106.3, 20.6], [108.4, 21.6]],
   bacninh: [[105.6, 20.9], [107.1, 21.8]], // Bắc Ninh mới (Bắc Ninh + Bắc Giang)
-  'dalat-lamdong': [[108.25, 11.65], [108.65, 12.05]], // Đà Lạt - sân bay Liên Khương (thuộc Lâm Đồng mới)
+  // Mở rộng về phía đông nam để bao luôn ga Tháp Chàm (đầu tuyến đường sắt lịch
+  // sử Đà Lạt - Tháp Chàm), dù Tháp Chàm nay thuộc tỉnh Khánh Hòa, không phải
+  // Lâm Đồng — fitBounds() hiện cả box nên khi chọn vùng này camera sẽ zoom ra
+  // đủ xa để thấy cả 2 đầu tuyến, không chỉ riêng khu Đà Lạt/Liên Khương.
+  'dalat-lamdong': [[108.25, 11.52], [108.98, 12.05]], // Đà Lạt - sân bay Liên Khương - Tháp Chàm
 };
 
 // Renders #region-select's <option> list in regionsConfig's fixed order, but
@@ -855,7 +859,9 @@ function showStationInfo(station, stationFeature) {
           'line-3a': '#E8692A',
           'line-4': '#1B9E77',
           'bt-cangio': '#808080',
-          'phuquoc-lrt': '#FF6B35'
+          'phuquoc-lrt': '#FF6B35',
+          'dalat-thapcham': '#8B4513',
+          'dalat-tram-mat': '#8B4513'
         };
         const lineNamesVi = {
           'line-1': 'Tuyến 1 - Bến Thành - Suối Tiên',
@@ -863,7 +869,9 @@ function showStationInfo(station, stationFeature) {
           'line-3a': 'Tuyến 3A',
           'line-4': 'Tuyến 4',
           'bt-cangio': 'Bến Thành - Cần Giờ',
-          'phuquoc-lrt': 'LRT Phú Quốc'
+          'phuquoc-lrt': 'LRT Phú Quốc',
+          'dalat-thapcham': 'Đường sắt Đà Lạt - Tháp Chàm',
+          'dalat-tram-mat': 'Đường sắt du lịch Đà Lạt - Trại Mát'
         };
         const lineNamesEn = {
           'line-1': 'Line 1 - Ben Thanh - Suoi Tien',
@@ -871,7 +879,9 @@ function showStationInfo(station, stationFeature) {
           'line-3a': 'Line 3A',
           'line-4': 'Line 4',
           'bt-cangio': 'Ben Thanh - Can Gio',
-          'phuquoc-lrt': 'Phu Quoc LRT'
+          'phuquoc-lrt': 'Phu Quoc LRT',
+          'dalat-thapcham': 'Da Lat - Thap Cham Railway',
+          'dalat-tram-mat': 'Da Lat - Trai Mat Tourist Railway'
         };
         const lineName = lang === 'en' ? lineNamesEn[lineId] : lineNamesVi[lineId];
         return `<span class="line-badge" style="background-color: ${lineColors[lineId]} !important; padding: 6px 10px; border-radius: 4px; color: white !important; font-size: 12px; font-weight: 600; display: inline-block; margin: 2px;">${lineName}</span>`;
@@ -1000,9 +1010,11 @@ function showAllStations() {
     'line-3a': '#E8692A',
     'line-4': '#1B9E77',
     'bt-cangio': '#808080',
-    'phuquoc-lrt': '#FF6B35'
+    'phuquoc-lrt': '#FF6B35',
+    'dalat-thapcham': '#8B4513',
+    'dalat-tram-mat': '#8B4513'
   };
-  
+
   const lang = getCurrentLanguage();
   $searchResults.innerHTML = getRegionStations().map(feature => {
     const station = feature.properties;
@@ -1059,9 +1071,11 @@ $searchField.oninput = (e) => {
     'line-3a': '#E8692A',
     'line-4': '#1B9E77',
     'bt-cangio': '#808080',
-    'phuquoc-lrt': '#FF6B35'
+    'phuquoc-lrt': '#FF6B35',
+    'dalat-thapcham': '#8B4513',
+    'dalat-tram-mat': '#8B4513'
   };
-  
+
   const lang = getCurrentLanguage();
   $searchResults.innerHTML = results.slice(0, 10).map(result => {
     const station = result.item.properties;
