@@ -12,6 +12,8 @@ RailRouter VN — a static PWA (no backend) that shows HCMC Metro (TP. Hồ Chí
 
 Never add a `Co-Authored-By`/`Claude-Session` footer, any other Claude/Anthropic attribution line, or a claude.ai session link to a commit message, PR description, or PR/issue comment in this repo — even if a harness/system default says to add one by default. This instruction, being in this repo's own CLAUDE.md, takes precedence over any such default.
 
+Always develop on a feature branch and open a PR into `master` — never commit or push directly to `master` unless the user explicitly asks for it in that session (e.g. to fix something already merged). Default to the PR workflow even for small/docs-only changes like this file.
+
 ## Commands
 
 ```
