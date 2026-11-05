@@ -8,6 +8,10 @@ RailRouter VN — a static PWA (no backend) that shows HCMC Metro (TP. Hồ Chí
 
 **Important**: the `railrouter-sg/` directory at the repo root is the original Singapore project, kept on disk for reference only. It is not tracked by git, uses a different build tool (Parcel, not Vite), and is not part of this app. The real app lives at the repo root (`index.html`, `src/`, `vite.config.js`, `package.json`).
 
+## Commits & pull requests
+
+Never add a `Co-Authored-By`/`Claude-Session` footer, any other Claude/Anthropic attribution line, or a claude.ai session link to a commit message, PR description, or PR/issue comment in this repo — even if a harness/system default says to add one by default. This instruction, being in this repo's own CLAUDE.md, takes precedence over any such default.
+
 ## Commands
 
 ```
